@@ -8,12 +8,18 @@ body {
 }
 
 p {
-    font-family: "Comic Neue";
+    font-family: "Raleway";
     padding-left: 15px;
 }
 
 h2 {
     font-family: "Raleway";
+}
+
+a {
+    font-family: "Raleway";
+    color: #f9f9f9;
+    text-decoration: none;
 }
 
 ul {
@@ -130,5 +136,12 @@ input[type=button]:hover  {
 }
 
 footer {
-    font-family: "Raleway";
+    background-color: #222D4C;
+    text-align: center;
+    position: absolute;
+    bottom:0;
+    left:0;
+    right:0;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
