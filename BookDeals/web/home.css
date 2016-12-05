@@ -1,0 +1,86 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #F9F9F9;
+}
+
+p {
+    font-family: "Comic Neue";
+    padding-left: 15px;
+}
+
+ul {
+    position: fixed;
+    width: 100%;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background: linear-gradient(#37497b, #222D4C);
+    text-align: center;
+}
+
+ul li {
+    vertical-align: middle;
+    display: inline-block;
+    font-family: 'Raleway';
+    float: left;
+}
+
+ul li img {
+    vertical-align: middle;
+    padding-left: 10px;
+}
+
+ul li a {
+    line-height: 50px;
+    display: inline-block;
+    color: #F9F9F9;
+    text-align: center;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+form {
+    /*width: auto;*/
+/*    margin-top: 25px;
+    margin-left: 100px;*/
+    font-family: 'Raleway';
+    padding-top: 200px;
+    text-align: center;
+}
+
+input[type=text] {
+    /*padding:8px 15px;*/
+    font-family: 'Raleway';
+    font-size: 24px;
+    color: #242228;
+    background:rgba(50, 50, 50, 0);
+    border:0px solid #dbdbdb;
+    border-bottom-width: 1px;    
+}/*
+
+*/input[type=button] {
+    position:relative;
+    /*padding:6px 15px;*/
+    left:5px;
+    border:2px solid #37497b;
+    background-color:#37497b;
+    color:#F9F9F9;
+    font-family: 'Raleway';
+    /*font-weight: bold;*/
+}
+
+input[type=button]:hover  {
+    background-color:#101523;
+    border:2px solid #101523;
+    color:#F9F9F9;
+}
+
+footer {
+    font-family: "Raleway";
+    text-align: center;
+}

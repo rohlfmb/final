@@ -1,0 +1,134 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #F9F9F9;
+}
+
+p {
+    font-family: "Comic Neue";
+    padding-left: 15px;
+}
+
+h2 {
+    font-family: "Raleway";
+}
+
+ul {
+    position: fixed;
+    width: 100%;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background: linear-gradient(#37497b, #222D4C);
+    text-align: center;
+}
+
+ul li {
+    vertical-align: middle;
+    display: inline-block;
+    font-family: 'Raleway';
+    float: left;
+}
+
+ul li img {
+    vertical-align: middle;
+    padding-left: 10px;
+}
+
+ul li a {
+    line-height: 50px;
+    display: inline-block;
+    color: #F9F9F9;
+    text-align: center;
+/*    padding-top: 25px;
+    padding-bottom: 25px;
+    padding: 14px 16px;*/
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+form {
+    width: auto;
+    margin-top: 25px;
+    margin-left: 150px;
+}
+
+input[type=text] {
+    padding:8px 15px;
+    font-family: 'Raleway';
+    color: #F9F9F9;
+    background:rgba(50, 50, 50, 0);
+    border:0px solid #dbdbdb;
+    border-bottom-width: 1px;    
+}
+
+input[type=text]:focus {
+    border:0px solid #dbdbdb;
+    border-bottom-width: 1px;    
+}
+
+input[type=button] {
+    position:relative;
+    padding:6px 15px;
+    left:5px;
+    border:2px solid #F9F9F9;
+    background-color:#F9F9F9;
+    color:#242228;
+    font-family: 'Raleway';
+    font-weight: bold;
+}
+
+input[type=button]:hover  {
+    border:2px solid #fafafa;
+    background-color:#fafafa;
+    color:#69B578;
+}
+
+/* Thanks to http://www.responsivegridsystem.com/calculator/ for the multi-column layout */
+/*  SECTIONS  */
+.section {
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+}
+
+/*  COLUMN SETUP  */
+.col {
+	display: block;
+	float:left;
+	margin: 1% 0 1% 1.6%;
+}
+.col:first-child { margin-left: 0; }
+
+/*  GROUPING  */
+.group:before,
+.group:after { content:""; display:table; }
+.group:after { clear:both;}
+.group { zoom:1; /* For IE 6/7 */ }
+/*  GRID OF FOUR  */
+.span_4_of_4 {
+	width: 100%;
+}
+.span_3_of_4 {
+	width: 74.6%;
+}
+.span_2_of_4 {
+	width: 49.2%;
+}
+.span_1_of_4 {
+	width: 23.8%;
+}
+
+/*  GO FULL WIDTH BELOW 480 PIXELS */
+@media only screen and (max-width: 480px) {
+	.col {  margin: 1% 0 1% 0%; }
+	.span_1_of_4, .span_2_of_4, .span_3_of_4, .span_4_of_4 { width: 100%; }
+}
+
+footer {
+    font-family: "Raleway";
+}
