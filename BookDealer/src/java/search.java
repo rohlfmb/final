@@ -6,6 +6,7 @@
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,18 +35,21 @@ public class search extends HttpServlet {
         
         String input = request.getParameter("search");
         
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet search</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>User searched for " + input + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+        RequestDispatcher dispatcher = request.getRequestDispatcher("./jsp/Results.jsp");
+        dispatcher.forward(request, response);
+        
+//        try (PrintWriter out = response.getWriter()) {
+//            /* TODO output your page here. You may use following sample code. */
+//            out.println("<!DOCTYPE html>");
+//            out.println("<html>");
+//            out.println("<head>");
+//            out.println("<title>Servlet search</title>");            
+//            out.println("</head>");
+//            out.println("<body>");
+//            out.println("<h1>User searched for " + input + "</h1>");
+//            out.println("</body>");
+//            out.println("</html>");
+//        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

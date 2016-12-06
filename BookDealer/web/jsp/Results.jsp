@@ -10,14 +10,14 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Results</title>
-        <link rel="stylesheet" type="text/css" href="../default.css"/>
+        <link rel="stylesheet" type="text/css" href="default.css"/>
 
         <style>
             @import url('https://fonts.googleapis.com/css?family=Raleway:300,400,700');
         </style>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>These are the results!</h1>
         
         <footer>
             <a href="about.html">About</a>

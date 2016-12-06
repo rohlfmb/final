@@ -75,7 +75,7 @@ input[type=text] {
     border-bottom-width: 1px;    
 }
 
-input[type=button] {
+input[type=submit] {
     position:relative;
     /*padding:6px 15px;*/
     left:5px;
@@ -86,7 +86,7 @@ input[type=button] {
     /*font-weight: bold;*/
 }
 
-input[type=button]:hover  {
+input[type=submit]:hover  {
     background-color:#101523;
     border:2px solid #101523;
     color:#F9F9F9;
