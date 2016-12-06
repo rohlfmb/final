@@ -20,7 +20,7 @@
         <h1>Hello World!</h1>
         
         <footer>
-            <a href="about.html">About</a>
+            <a href="../about.html">About</a>
         </footer>
     </body>
 </html>
