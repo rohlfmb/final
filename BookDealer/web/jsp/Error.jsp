@@ -1,7 +1,7 @@
 <%-- 
-    Document   : Registration
-    Created on : Nov 17, 2016, 10:04:42 PM
-    Author     : Rebecca Andrews
+    Document   : Error
+    Created on : Dec 5, 2016, 9:18:02 PM
+    Author     : rohlf
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -9,18 +9,14 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Error</title>
         <link rel="stylesheet" type="text/css" href="../default.css"/>
-    
+
         <style>
             @import url('https://fonts.googleapis.com/css?family=Raleway:300,400,700');
         </style>
     </head>
     <body>
         <h1>Hello World!</h1>
-        
-        <footer>
-            <a href="../about.html">About</a>
-        </footer>
     </body>
 </html>
