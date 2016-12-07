@@ -4,8 +4,10 @@
     Author     : rohlf
 --%>
 
+<%@page import="java.util.ArrayList"%>
 <%@page import="java.sql.ResultSetMetaData"%>
 <%@page import="java.sql.ResultSet"%>
+<%@page import="bookdeals.Book"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -22,7 +24,7 @@
         <ul>
             <li>
                 <a href="home.html">
-                    <img src="logo.png" alt="Logo" style="max-width:150px"/></li>
+                    <img src="logo.png" alt="Logo" style="max-width:150px"/>
                 </a>          
             <li>
               <form method="post" action="search">
@@ -54,22 +56,68 @@
                 <td><p>Description</p></td>
             </tr>
             <%
-                ResultSet rs2;                
-                rs2 = (ResultSet)request.getAttribute("rs");
-                ResultSetMetaData rsmd = rs2.getMetaData();
-                int col = rsmd.getColumnCount();
+//                int counter = 0;
+//                ResultSet rs2;                
+//                rs2 = (ResultSet)request.getAttribute("rs");
+//                ResultSetMetaData rsmd = rs2.getMetaData();
+//                int col = rsmd.getColumnCount();
+//
+//                while(rs2.next()) {
+//                    %> <!--<tr style="border-bottom: 1pt solid #D3D0CB"> <%
+//                    for(int ii = 1; ii <= col; ii++) {
+//                        %> <td> <%
+//                        if (counter == 0 || counter % 5 == 0) {
+//                            %> <a href="./jsp/Product.jsp" style="font-family: Raleway; color: #69B578;"> <%
+//                                out.print(rs2.getString(ii)); 
+//                            %> </a> <%
+//                        }
+//                        else {
+//                            %> <p> <%
+//                            out.print(rs2.getString(ii)); 
+//                            %> </p> <%
+//                        }
+//                        %> </td> <%
+//                        counter++;
+//                    }
+//                    %> </tr> --> <%
+//                }
+//
+//                rs2.close();
 
-                while(rs2.next()) {
+                ArrayList<Book> books = new ArrayList<Book>();
+                books = (ArrayList<Book>)request.getAttribute("books");
+                
+                System.out.println(books.size());
+                
+                
+                for(int ii = 0; ii < books.size(); ii++) {
                     %> <tr style="border-bottom: 1pt solid #D3D0CB"> <%
-                    for(int ii = 1; ii <= col; ii++) {
-                    %> <td> <p> <%
-                        out.print(rs2.getString(ii));
-                    %> </p> </td> <%
-                    }
+                    %> <td> <%
+                        %> <a href="./jsp/Product.jsp" style="font-family: Raleway; color: #69B578;"> <%
+                            out.print(books.get(ii).getTitle()); 
+                        %> </a> <%
+                    %> </td> <td> <%
+                        %> <p> <%
+                            out.print(books.get(ii).getAuthor());
+                        %> </p> <%
+                    %> </td> <td> <%
+                        %> <p> <%
+                            out.print(books.get(ii).getGenre()); 
+                        %> </p> <%
+                    %> </td> <td> <% 
+                        %> <p> <%
+                            out.print(books.get(ii).getYear()); 
+                        %> </p> <%
+                    %> </td> <td> <%
+                        %> <p> <%
+                            out.print(books.get(ii).getDescription()); 
+                        %> </p> <%
+                    %> </td> <%
                     %> </tr> <%
-                }
+                    }                    
+                
+                
 
-                rs2.close();
             %>
         </table>
         

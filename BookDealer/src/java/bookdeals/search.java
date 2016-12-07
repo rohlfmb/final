@@ -1,3 +1,5 @@
+package bookdeals;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -5,13 +7,12 @@
  */
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -36,6 +37,8 @@ public class search extends HttpServlet {
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
+     * @throws java.lang.ClassNotFoundException
+     * @throws java.sql.SQLException
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException {
@@ -47,8 +50,8 @@ public class search extends HttpServlet {
         
         // SQL Stuff...
         Connection conn = null;
-        Statement stmt = null;
         ResultSet rs = null;
+        ArrayList<Book> books = new ArrayList();
         
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -58,17 +61,38 @@ public class search extends HttpServlet {
             String sql = "SELECT title, author, genre, year, description FROM Books WHERE " + type + " LIKE ?";
             PreparedStatement ps = conn.prepareStatement(sql);
             
-            System.out.println("type is: " + type);
+//            System.out.println("type is: " + type);
             ps.setString(1, "%" + input + "%");
 
-            System.out.println("sql is: " + ps);
+//            System.out.println("sql is: " + ps);
             
             rs = ps.executeQuery();
+            
+            while(rs.next()) {
+                Book book = new Book();
+                
+                book.title = rs.getString("title");
+                book.author = rs.getString("author");
+                book.genre = rs.getString("genre");
+                book.year = rs.getInt("year");
+                book.description = rs.getString("description");
+                
+                books.add(book);
+            }
+            
+            for(int ii = 0; ii < books.size(); ii++) {
+                System.out.println(books.get(ii).getTitle());
+                System.out.println(books.get(ii).getAuthor());
+                System.out.println(books.get(ii).getGenre());
+                System.out.println(books.get(ii).getYear());
+                System.out.println(books.get(ii).getDescription());
+            }
             
             RequestDispatcher dispatcher = request.getRequestDispatcher("./jsp/Results.jsp");
             request.setAttribute("search", input);
             request.setAttribute("rs", rs);
             request.setAttribute("type", type);
+            request.setAttribute("books", books);
             dispatcher.forward(request, response);
         }
         catch (ClassNotFoundException | SQLException e) {
@@ -76,7 +100,6 @@ public class search extends HttpServlet {
         }
         finally {
             rs.close();
-            stmt.close();
             conn.close();
         }
         
