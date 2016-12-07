@@ -6,6 +6,14 @@
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -30,26 +38,51 @@ public class search extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         
         String input = request.getParameter("search");
         
-        RequestDispatcher dispatcher = request.getRequestDispatcher("./jsp/Results.jsp");
-        dispatcher.forward(request, response);
+        // SQL Stuff...
+        Connection conn = null;
+        Statement stmt = null;
+        ResultSet rs = null;
         
-//        try (PrintWriter out = response.getWriter()) {
-//            /* TODO output your page here. You may use following sample code. */
-//            out.println("<!DOCTYPE html>");
-//            out.println("<html>");
-//            out.println("<head>");
-//            out.println("<title>Servlet search</title>");            
-//            out.println("</head>");
-//            out.println("<body>");
-//            out.println("<h1>User searched for " + input + "</h1>");
-//            out.println("</body>");
-//            out.println("</html>");
-//        }
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            
+            conn = DriverManager.getConnection("jdbc:mysql://grove.cs.jmu.edu/team21_db", "team21", "f0xtrot9");
+            
+//            stmt = conn.createStatement();
+//            rs = stmt.executeQuery("SELECT title FROM Books WHERE title LIKE \"%?%\";");
+
+            String sql = "SELECT * FROM Books WHERE title LIKE ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            
+            ps.setString(1, "%" + input + "%");
+            
+            rs = ps.executeQuery();
+            
+//            if (stmt.execute("SELECT title FROM Books WHERE title LIKE " + input)) {
+//                System.out.println("Got the query");
+//                rs = stmt.getResultSet();
+//            }
+            
+            RequestDispatcher dispatcher = request.getRequestDispatcher("./jsp/Results.jsp");
+            request.setAttribute("search", input);
+            request.setAttribute("rs", rs);
+            dispatcher.forward(request, response);
+        }
+        catch (ClassNotFoundException | SQLException e) {
+            System.out.println("Cause is " + e.toString());
+        }
+        finally {
+            rs.close();
+            stmt.close();
+            conn.close();
+        }
+        
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -64,7 +97,13 @@ public class search extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(search.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(search.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -78,7 +117,13 @@ public class search extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(search.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(search.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
