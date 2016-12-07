@@ -47,47 +47,55 @@
         <br>
         <br>
         
-        <table style="border-collapse: collapse;" align="center">
-            <tr style="font-weight: bold; border-bottom: 1pt solid #242228">
-                <td><p>Title</p></td>
-                <td><p>Author</p></td>
-                <td><p>Genre</p></td>
-                <td><p>Year</p></td>
-                <td><p>Description</p></td>
-            </tr>
-            <%
-                ArrayList<Book> books = new ArrayList();
-                books = (ArrayList<Book>)request.getAttribute("books");
-                
-                System.out.println(books.size());
-                
-                
-                for(int ii = 0; ii < books.size(); ii++) {
-                    %> <tr style="border-bottom: 1pt solid #D3D0CB"> <%
-                    %> <td> <%
-                        %> <a href="./jsp/Product.jsp?isbn=<%=books.get(ii).getIsbn()%>" style="font-family: Raleway; color: #69B578;"> <%
-                            out.print(books.get(ii).getTitle());
-//                            request.setAttribute("book", books.get(ii));
-//                            session.setAttribute("book", books.get(ii));
-                        %> </a> <%
-                    %> </td> <td> <%
-                        %> <p> <%
-                            out.print(books.get(ii).getAuthor());
-                        %> </p> <%
-                    %> </td> <td> <%
-                        %> <p> <%
-                            out.print(books.get(ii).getGenre()); 
-                        %> </p> <%
-                    %> </td> <td> <% 
-                        %> <p> <%
-                            out.print(books.get(ii).getYear()); 
-                        %> </p> <%
-                    %> </td> <td> <%
-                        %> <p> <%
-                            out.print(books.get(ii).getDescription()); 
-                        %> </p> <%
-                    %> </td> <%
-                    %> </tr> <%
+        <%
+            ArrayList<Book> books = new ArrayList();
+            books = (ArrayList<Book>)request.getAttribute("books");
+
+//            System.out.println(books.size());
+            if(books.size() > 0) {   
+            %>        
+                <table style="border-collapse: collapse;" align="center">
+                    <tr style="font-weight: bold; border-bottom: 1pt solid #242228">
+                        <td><p>Title</p></td>
+                        <td><p>Author</p></td>
+                        <td><p>Genre</p></td>
+                        <td><p>Year</p></td>
+                        <td><p>Description</p></td>
+                    </tr>
+            <%                           
+                    for(int ii = 0; ii < books.size(); ii++) {
+                        %> <tr style="border-bottom: 1pt solid #D3D0CB"> <%
+                        %> <td> <%
+                            %> <a href="./jsp/Product.jsp?isbn=<%=books.get(ii).getIsbn()%>" style="font-family: Raleway; color: #69B578;"> <%
+                                out.print(books.get(ii).getTitle());
+                            %> </a> <%
+                        %> </td> <td> <%
+                            %> <p> <%
+                                out.print(books.get(ii).getAuthor());
+                            %> </p> <%
+                        %> </td> <td> <%
+                            %> <p> <%
+                                out.print(books.get(ii).getGenre()); 
+                            %> </p> <%
+                        %> </td> <td> <% 
+                            %> <p> <%
+                                out.print(books.get(ii).getYear()); 
+                            %> </p> <%
+                        %> </td> <td> <%
+                            %> <p> <%
+                                out.print(books.get(ii).getDescription()); 
+                            %> </p> <%
+                        %> </td> <%
+                        %> </tr> <%
+                    }
+                } else {
+                    %> 
+                    
+                        <p style="text-align: center">
+                            No results found. Please try searching again.
+                        </p>
+                        
+                    <% 
                 }
             %>
         </table>
