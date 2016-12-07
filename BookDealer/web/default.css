@@ -108,6 +108,14 @@ input[type=submit]:hover  {
     color:#69B578;
 }
 
+select {
+    background-color: #222D4C;
+    color:#F9F9F9;
+    font-family: Raleway;
+    border: 0;
+    line-height: 1;
+}
+
 /* Thanks to http://www.responsivegridsystem.com/calculator/ for the multi-column layout */
 /*  SECTIONS  */
 .section {

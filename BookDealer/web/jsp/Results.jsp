@@ -36,7 +36,7 @@
                   <input type="submit" value='Search'>
               </form>          
             </li>
-            <li style="float:right; padding-top: 15px; padding-right: 15px"><a href="account.html">Account</a></li>
+            <li style="float:right; padding-top: 15px; padding-right: 15px"><a href="./jsp/Account.jsp">Account</a></li>
         </ul>
         
         <br>
@@ -45,7 +45,14 @@
         <br>
         <br>
         
-        <table>            
+        <table style="border-collapse: collapse;">
+            <tr style="font-weight: bold; border-bottom: 1pt solid #242228">
+                <td><p>Title</p></td>
+                <td><p>Author</p></td>
+                <td><p>Genre</p></td>
+                <td><p>Year</p></td>
+                <td><p>Description</p></td>
+            </tr>
             <%
                 ResultSet rs2;                
                 rs2 = (ResultSet)request.getAttribute("rs");
@@ -53,11 +60,8 @@
                 int col = rsmd.getColumnCount();
 
                 while(rs2.next()) {
-                    %> <tr> <%
+                    %> <tr style="border-bottom: 1pt solid #D3D0CB"> <%
                     for(int ii = 1; ii <= col; ii++) {
-                        if (ii > 1) {
-                            out.print(", ");
-                        }
                     %> <td> <p> <%
                         out.print(rs2.getString(ii));
                     %> </p> </td> <%

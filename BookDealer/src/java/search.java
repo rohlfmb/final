@@ -55,7 +55,7 @@ public class search extends HttpServlet {
             
             conn = DriverManager.getConnection("jdbc:mysql://grove.cs.jmu.edu/team21_db", "team21", "f0xtrot9");
 
-            String sql = "SELECT * FROM Books WHERE " + type + " LIKE ?";
+            String sql = "SELECT title, author, genre, year, description FROM Books WHERE " + type + " LIKE ?";
             PreparedStatement ps = conn.prepareStatement(sql);
             
             System.out.println("type is: " + type);
