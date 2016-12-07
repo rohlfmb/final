@@ -11,12 +11,16 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="../default.css"/>
         <title>JSP Page</title>
+        
+        <style>
+            @import url('https://fonts.googleapis.com/css?family=Raleway:300,400,700');
+        </style>
     </head>
     <body>
         <ul>
         <li>
             <a href="home.html">
-                <img src="logo.png" alt="Logo" style="max-width:150px"/></li>
+                <img src="../logo.png" alt="Logo" style="max-width:150px"/></li>
             </a>          
         <li>
           <form method="post" action="search">

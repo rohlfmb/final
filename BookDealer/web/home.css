@@ -79,8 +79,8 @@ input[type=submit] {
     position:relative;
     /*padding:6px 15px;*/
     left:5px;
-    border:2px solid #37497b;
-    background-color:#37497b;
+    border:2px solid #222D4C;
+    background-color:#222D4C;
     color:#F9F9F9;
     font-family: 'Raleway';
     /*font-weight: bold;*/
@@ -90,6 +90,14 @@ input[type=submit]:hover  {
     background-color:#101523;
     border:2px solid #101523;
     color:#F9F9F9;
+}
+
+select {
+    background-color: #222D4C;
+    color:#F9F9F9;
+    font-family: Raleway;
+    border: 0;
+    line-height: 1;
 }
 
 footer {

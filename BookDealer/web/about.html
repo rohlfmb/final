@@ -19,6 +19,12 @@
       <li>
         <form method="post" action="search">
             <input style='width:20em' name="search" type="text" placeholder="Search..." required>
+            <select name="type">
+                <option selected="selected" disabled>Select an Option</option>
+                <option value="title">Title</option>
+                <option value="author">Author</option>
+                <option value="isbn">ISBN</option>
+            </select>
             <input type="submit" value='Search'>
         </form>          
       </li>

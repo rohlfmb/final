@@ -39,31 +39,29 @@
         <br>
         <br>
         
-        <p>
-            User searched for <%=(String)request.getAttribute("search")%>
-        </p>
-        
-        <p>
-            Result set is <%
+        <table>            
+            <%
                 ResultSet rs2;                
                 rs2 = (ResultSet)request.getAttribute("rs");
                 ResultSetMetaData rsmd = rs2.getMetaData();
                 int col = rsmd.getColumnCount();
-                
+
                 while(rs2.next()) {
+                    %> <tr> <%
                     for(int ii = 1; ii <= col; ii++) {
                         if (ii > 1) {
                             out.print(", ");
                         }
-                        
-                        String colVal = rs2.getString(ii);
-                        out.print(colVal);
+                    %> <td> <p> <%
+                        out.print(rs2.getString(ii));
+                    %> </p> </td> <%
                     }
+                    %> </tr> <%
                 }
-                
+
                 rs2.close();
             %>
-        </p>
+        </table>
         
         <footer>
             <a href="about.html">About</a>

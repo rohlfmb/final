@@ -42,6 +42,8 @@ public class search extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         
         String input = request.getParameter("search");
+        String type = request.getParameter("type");
+        type = type.replace("'", "''");
         
         // SQL Stuff...
         Connection conn = null;
@@ -52,25 +54,21 @@ public class search extends HttpServlet {
             Class.forName("com.mysql.jdbc.Driver");
             
             conn = DriverManager.getConnection("jdbc:mysql://grove.cs.jmu.edu/team21_db", "team21", "f0xtrot9");
-            
-//            stmt = conn.createStatement();
-//            rs = stmt.executeQuery("SELECT title FROM Books WHERE title LIKE \"%?%\";");
 
-            String sql = "SELECT * FROM Books WHERE title LIKE ?";
+            String sql = "SELECT * FROM Books WHERE " + type + " LIKE ?";
             PreparedStatement ps = conn.prepareStatement(sql);
             
+            System.out.println("type is: " + type);
             ps.setString(1, "%" + input + "%");
+
+            System.out.println("sql is: " + ps);
             
             rs = ps.executeQuery();
-            
-//            if (stmt.execute("SELECT title FROM Books WHERE title LIKE " + input)) {
-//                System.out.println("Got the query");
-//                rs = stmt.getResultSet();
-//            }
             
             RequestDispatcher dispatcher = request.getRequestDispatcher("./jsp/Results.jsp");
             request.setAttribute("search", input);
             request.setAttribute("rs", rs);
+            request.setAttribute("type", type);
             dispatcher.forward(request, response);
         }
         catch (ClassNotFoundException | SQLException e) {
