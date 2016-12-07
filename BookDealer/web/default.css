@@ -63,6 +63,20 @@ form {
     margin-left: 150px;
 }
 
+form #reg {
+    background-color: white;
+    border: solid 0.5em #222D4C;
+    margin-left: 20px;
+    padding: 1em 4em 1em 4em;
+    width: 20em;
+}
+
+label {
+    display: inline-block;
+    text-align: left;
+    width: 8em;
+}
+
 input[type=text] {
     padding:8px 15px;
     font-family: 'Raleway';
