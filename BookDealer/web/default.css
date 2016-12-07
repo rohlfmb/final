@@ -64,7 +64,7 @@ form {
 }
 
 form #reg {
-    background-color: white;
+    background-color: gray;
     border: solid 0.5em #222D4C;
     margin-left: 20px;
     padding: 1em 4em 1em 4em;
