@@ -58,13 +58,10 @@ public class search extends HttpServlet {
             
             conn = DriverManager.getConnection("jdbc:mysql://grove.cs.jmu.edu/team21_db", "team21", "f0xtrot9");
 
-            String sql = "SELECT title, author, genre, year, description FROM Books WHERE " + type + " LIKE ?";
+            String sql = "SELECT title, author, genre, year, description, isbn FROM Books WHERE " + type + " LIKE ?";
             PreparedStatement ps = conn.prepareStatement(sql);
             
-//            System.out.println("type is: " + type);
             ps.setString(1, "%" + input + "%");
-
-//            System.out.println("sql is: " + ps);
             
             rs = ps.executeQuery();
             
@@ -76,6 +73,7 @@ public class search extends HttpServlet {
                 book.genre = rs.getString("genre");
                 book.year = rs.getInt("year");
                 book.description = rs.getString("description");
+                book.isbn = rs.getString("isbn");
                 
                 books.add(book);
             }
@@ -86,6 +84,7 @@ public class search extends HttpServlet {
                 System.out.println(books.get(ii).getGenre());
                 System.out.println(books.get(ii).getYear());
                 System.out.println(books.get(ii).getDescription());
+                System.out.println(books.get(ii).getIsbn());
             }
             
             RequestDispatcher dispatcher = request.getRequestDispatcher("./jsp/Results.jsp");

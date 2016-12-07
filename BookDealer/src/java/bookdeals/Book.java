@@ -11,8 +11,8 @@ package bookdeals;
  * @author rohlf
  */
 public class Book {
-    String title, author, genre, description;
-    int year;
+    public String title, author, genre, description, isbn;
+    public int year;    
     
     public Book() {
         title = "";
@@ -20,7 +20,15 @@ public class Book {
         genre = "";
         description = "";
         year = 0;
-    }    
+    }
+    
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
+    
+    public String getIsbn() {
+        return isbn;
+    }
 
     public void setTitle(String title) {
         this.title = title;

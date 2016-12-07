@@ -56,35 +56,7 @@
                 <td><p>Description</p></td>
             </tr>
             <%
-//                int counter = 0;
-//                ResultSet rs2;                
-//                rs2 = (ResultSet)request.getAttribute("rs");
-//                ResultSetMetaData rsmd = rs2.getMetaData();
-//                int col = rsmd.getColumnCount();
-//
-//                while(rs2.next()) {
-//                    %> <!--<tr style="border-bottom: 1pt solid #D3D0CB"> <%
-//                    for(int ii = 1; ii <= col; ii++) {
-//                        %> <td> <%
-//                        if (counter == 0 || counter % 5 == 0) {
-//                            %> <a href="./jsp/Product.jsp" style="font-family: Raleway; color: #69B578;"> <%
-//                                out.print(rs2.getString(ii)); 
-//                            %> </a> <%
-//                        }
-//                        else {
-//                            %> <p> <%
-//                            out.print(rs2.getString(ii)); 
-//                            %> </p> <%
-//                        }
-//                        %> </td> <%
-//                        counter++;
-//                    }
-//                    %> </tr> --> <%
-//                }
-//
-//                rs2.close();
-
-                ArrayList<Book> books = new ArrayList<Book>();
+                ArrayList<Book> books = new ArrayList();
                 books = (ArrayList<Book>)request.getAttribute("books");
                 
                 System.out.println(books.size());
@@ -93,8 +65,10 @@
                 for(int ii = 0; ii < books.size(); ii++) {
                     %> <tr style="border-bottom: 1pt solid #D3D0CB"> <%
                     %> <td> <%
-                        %> <a href="./jsp/Product.jsp" style="font-family: Raleway; color: #69B578;"> <%
-                            out.print(books.get(ii).getTitle()); 
+                        %> <a href="./jsp/Product.jsp?isbn=<%=books.get(ii).getIsbn()%>" style="font-family: Raleway; color: #69B578;"> <%
+                            out.print(books.get(ii).getTitle());
+//                            request.setAttribute("book", books.get(ii));
+//                            session.setAttribute("book", books.get(ii));
                         %> </a> <%
                     %> </td> <td> <%
                         %> <p> <%
@@ -114,10 +88,7 @@
                         %> </p> <%
                     %> </td> <%
                     %> </tr> <%
-                    }                    
-                
-                
-
+                }
             %>
         </table>
         
