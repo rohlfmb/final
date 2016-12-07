@@ -38,7 +38,7 @@
         </ul>
         
         <footer>
-            <a href="../about.html">About</a>
+            <a href="../about.html">About Us</a>
         </footer>
     </body>
 </html>
