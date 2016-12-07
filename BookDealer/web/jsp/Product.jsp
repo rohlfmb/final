@@ -31,7 +31,7 @@
             <li>
               <form method="post" action="../search">
                   <input style='width:20em' name="search" type="text" placeholder="Search..." required>
-                  <select name="type">
+                  <select name="type" required>
                       <option selected="selected" disabled>Select an Option</option>
                       <option value="title">Title</option>
                       <option value="author">Author</option>
@@ -48,7 +48,6 @@
         <br/>
         <br/>
         <br/>
-        <!--Product.jsp?isbn=-->
         <% 
             Connection conn = null;
             ResultSet rs = null;
@@ -91,15 +90,18 @@
             conn.close();
         }
             
-        %> <p> <% 
+        %> 
+        
+        <img src="../img/<%=book.getIsbn()%>.jpg" alt="Book Cover" style="padding-left: 15px;">
+        
+        <p> <% 
             out.println(book.getTitle());
             out.println(book.getAuthor());
             out.println(book.getGenre());
             out.println(book.getYear());
             out.println(book.getDescription());
             out.println(book.getIsbn());
-        %> </p> <%
-        %>
+        %> </p>
         
         <footer>
             <a href="about.html">About Us</a>

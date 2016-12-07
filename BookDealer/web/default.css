@@ -23,6 +23,11 @@ a {
     text-align: center;
 }
 
+img {
+    width:100%;
+    max-width: 300px;
+}
+
 ul {
     position: fixed;
     width: 100%;

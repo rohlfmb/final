@@ -29,7 +29,7 @@
             <li>
               <form method="post" action="search">
                   <input style='width:20em' name="search" type="text" placeholder="Search..." required>
-                    <select name="type">
+                    <select name="type" required>
                         <option selected="selected" disabled>Select an Option</option>
                         <option value="title">Title</option>
                         <option value="author">Author</option>
@@ -47,7 +47,7 @@
         <br>
         <br>
         
-        <table style="border-collapse: collapse;">
+        <table style="border-collapse: collapse;" align="center">
             <tr style="font-weight: bold; border-bottom: 1pt solid #242228">
                 <td><p>Title</p></td>
                 <td><p>Author</p></td>
