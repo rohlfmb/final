@@ -13,7 +13,7 @@
   <body>
     <ul>
       <li>
-          <a href="home.html">
+          <a href="home.jsp">
               <img src="logo.png" alt="Logo" style="max-width:150px"/>
           </a>          
       <li>
@@ -28,7 +28,16 @@
             <input type="submit" value='Search'>
         </form>          
       </li>
-      <li style="float:right; padding-top: 15px; padding-right: 15px"><a href="./jsp/Account.jsp">Account</a></li>
+                  <%
+                if ((Boolean) session.getAttribute("loggedIn") == null || (Boolean) session.getAttribute("loggedIn") == false) {
+                    session.setAttribute("previousURL", "about.jsp");
+                    out.println("<li style=\"float:right; padding-top: 15px; padding-right: 15px\"><a href=\"./login.jsp\">Login</a></li>");
+                } else {
+                    out.println("<li style=\"float:right; padding-top: 15px; padding-right: 15px\"><a href=\"logout\">Logout</a></li>");
+                    out.println("<li style=\"float:right; padding-top: 15px; padding-right: 15px\"><a href=\"./jsp/Wishlist.jsp\">Wishlist</a></li>");
+                    out.println("<li style=\"float:right; padding-top: 15px; padding-right: 15px\"><a href=\"./jsp/Account.jsp\">Hello, " + session.getAttribute("userName") + "</a></li>");
+                }
+            %>
     </ul>
 
     <br/>
@@ -75,7 +84,7 @@
     </div>
     
     <footer>
-        <a href="about.html">About Us</a>
+        <a href="about.jsp">About Us</a>
     </footer>
   </body>
 </html>

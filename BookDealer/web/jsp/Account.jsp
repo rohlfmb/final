@@ -19,26 +19,34 @@
     <body>
         <ul>
             <li>
-                <a href="../home.html">
+                <a href="../home.jsp">
                     <img src="../logo.png" alt="Logo" style="max-width:150px"/>
                 </a>          
             <li>
-              <form method="post" action="../search">
-                  <input style='width:20em' name="search" type="text" placeholder="Search..." required>
-                  <select name="type" required>
-                      <option selected="selected" disabled>Select an Option</option>
-                      <option value="title">Title</option>
-                      <option value="author">Author</option>
-                      <option value="isbn">ISBN</option>
-                  </select>
-                  <input type="submit" value='Search'>
-              </form>          
+                <form method="post" action="../search">
+                    <input style='width:20em' name="search" type="text" placeholder="Search..." required>
+                    <select name="type" required>
+                        <option selected="selected" disabled>Select an Option</option>
+                        <option value="title">Title</option>
+                        <option value="author">Author</option>
+                        <option value="isbn">ISBN</option>
+                    </select>
+                    <input type="submit" value='Search'>
+                </form>          
             </li>
-            <li style="float:right; padding-top: 15px; padding-right: 15px"><a href="Account.jsp">Account</a></li>
+            <%
+                if ((Boolean) session.getAttribute("loggedIn") == null || (Boolean) session.getAttribute("loggedIn") == false) {
+                    response.sendRedirect("../login.jsp");
+                } else {
+                    out.println("<li style=\"float:right; padding-top: 15px; padding-right: 15px\"><a href=\"../logout\">Logout</a></li>");
+                    out.println("<li style=\"float:right; padding-top: 15px; padding-right: 15px\"><a href=\"./Wishlist.jsp\">Wishlist</a></li>");
+                    out.println("<li style=\"float:right; padding-top: 15px; padding-right: 15px\"><a href=\"Account.jsp\">Hello, " + session.getAttribute("userName") + "</a></li>");
+                }
+            %>
         </ul>
-        
+
         <footer>
-            <a href="../about.html">About Us</a>
+            <a href="../about.jsp">About Us</a>
         </footer>
     </body>
 </html>
