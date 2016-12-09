@@ -59,7 +59,6 @@
             ArrayList<Book> books = new ArrayList();
             books = (ArrayList<Book>) request.getAttribute("books");
 
-//            System.out.println(books.size());
             if (books.size() > 0) {
         %>        
         <table style="border-collapse: collapse;" align="center">
@@ -73,36 +72,30 @@
             <%
                 for (int ii = 0; ii < books.size(); ii++) {
             %> <tr style="border-bottom: 1pt solid #D3D0CB"> <%
-                %> <td> <%
+                %> <td style="padding-left: 10px;"> <%
                     %> <a href="./jsp/Product.jsp?isbn=<%=books.get(ii).getIsbn()%>" style="font-family: Raleway; color: #69B578; font-weight: bold;"> <%
                         out.print(books.get(ii).getTitle());
                         %> </a> <%
                     %> </td> <td> <%
-                    %> <p> <%                                out.print(books.get(ii).getAuthor());
-                        %> </p> <%
+                    %> <p> <% out.print(books.get(ii).getAuthor()); %> </p> <%
                     %> </td> <td> <%
-                    %> <p> <%                                out.print(books.get(ii).getGenre());
-                        %> </p> <%
+                    %> <p> <% out.print(books.get(ii).getGenre()); %> </p> <%
                     %> </td> <td> <%
-                    %> <p> <%                                out.print(books.get(ii).getYear());
-                        %> </p> <%
-                    %> </td> <td> <%
-                    %> <p> <%                                if (books.get(ii).getDescription().length() >= 100) {
-                            out.print(books.get(ii).getDescription().substring(0, 100));
+                    %> <p> <% out.print(books.get(ii).getYear()); %> </p> <%
+                    %> </td> <td style="padding-right: 10px;"> <%
+                    %> <p> <%                                
+                        if (books.get(ii).getDescription().length() >= 125) {
+                            out.print(books.get(ii).getDescription().substring(0, 125) + "...");
                         } else {
                             out.print(books.get(ii).getDescription());
                         }
                         %> </p> <%
                     %> </td> <%
-                %> </tr> <%                            }
+                %> </tr> <% }
                 } else {
-                %> 
-
-            <p style="text-align: center">
-                No results found. Please try searching again.
-            </p>
-
-            <%
+                %>  <p style="text-align: center">
+                        No results found. Please try searching again.
+                    </p> <%
                 }
             %>
         </table>
