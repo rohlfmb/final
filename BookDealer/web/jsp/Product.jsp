@@ -111,11 +111,11 @@
             double lowest = 0.0;
 
             for (int ii = 0; ii < 4; ii++) {
-                if(ii == 0) {
+                if(ii == 0 && prices[ii] != -1) {
                     lowest = amPrice;
                 }
                 else {
-                    if(prices[ii] < lowest) {
+                    if(prices[ii] < lowest && prices[ii] != -1) {
                         lowest = prices[ii];
                     }
                 }
@@ -124,13 +124,14 @@
         %> 
 
         <div class="product">
-            <img src="../img/<%=book.getIsbn()%>.jpg" alt="Book Cover" style="float: left; padding-right: 15px;"/>      
+            <img src="../img/<%=book.getIsbn()%>.jpg" alt="Book Cover"/>      
             <h2> <%=book.getTitle()%> </h2>
-            <p> <%=book.getAuthor()%> </p>
-            <p> <%=book.getGenre()%> </p>
-            <p> <%=book.getYear()%> </p>
-            <p> <%=book.getDescription()%> </p>
-            <p> <%=book.getIsbn()%> </p>
+            <hr/>
+            <p> <b>Author:</b> <%=book.getAuthor()%></p>            
+            <p> <b>Genre:</b> <%=book.getGenre()%> </p>
+            <p> <b>Year Published:</b> <%=book.getYear()%> </p>
+            <p> <b>Description:</b> <%=book.getDescription()%> </p>
+            <p> <b>ISBN:</b> <%=book.getIsbn()%> </p>
         </div>
 
         <div class="section group" align="center" style="width: 900px; padding-left: 15px; padding-right: 15px; padding-top: 30px;
@@ -139,7 +140,10 @@
                 <h2>Amazon</h2>
 
                 <%
-                    if(amPrice == lowest) {
+                    if(amPrice == -1) {
+                        %> <p> Price Not Available </p> <%
+                    }
+                    else if(amPrice == lowest) {
                         %> <p style="font-weight: bold; color: #69B578"> $<%=df.format(amPrice)%> </p> <%
                     }
                     else {
@@ -151,7 +155,10 @@
                 <h2>Barnes & Noble</h2>
 
                 <%
-                    if(bnPrice == lowest) {
+                    if(bnPrice == -1) {
+                        %> <p> Price Not Available </p> <%
+                    }
+                    else if(bnPrice == lowest) {
                         %> <p style="font-weight: bold; color: #69B578"> $<%=df.format(bnPrice)%> </p> <%
                     }
                     else {
@@ -163,7 +170,10 @@
                 <h2>Books-A-Million</h2>
 
                 <%
-                    if(bmPrice == lowest) {
+                    if(bmPrice == -1) {
+                        %> <p> Price Not Available </p> <%
+                    }
+                    else if(bmPrice == lowest) {
                         %> <p style="font-weight: bold; color: #69B578"> $<%=df.format(bmPrice)%> </p> <%
                     }
                     else {
@@ -175,7 +185,10 @@
                 <h2>WalMart</h2>
 
                 <%
-                    if(wmPrice == lowest) {
+                    if(wmPrice == -1) {
+                        %> <p> Price Not Available </p> <%
+                    }
+                    else if(wmPrice == lowest) {
                         %> <p style="font-weight: bold; color: #69B578"> $<%=df.format(wmPrice)%> </p> <%
                     }
                     else {
