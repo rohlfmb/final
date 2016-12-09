@@ -5,6 +5,7 @@ html, body {
 
 body {
     background-color: #F9F9F9;
+    margin-bottom: 5em;
 }
 
 p {
@@ -69,18 +70,31 @@ form {
     margin-left: 150px;
 }
 
-form #reg {
-    background-color: gray;
+#reg {
+    background-color: white;
     border: solid 0.5em #222D4C;
-    margin-left: 20px;
+    margin-left: auto;
+    margin-right: auto;
     padding: 1em 4em 1em 4em;
-    width: 20em;
+    width: 35em;
 }
 
-label {
+#reg input[type=text] {
+    font-family: 'Raleway';
+    color: #242228;
+    background-color: #F9F9F9;
+    border: 1px solid black;
+}
+
+#reg imput[type=password] {
+    background-color: #F9F9F9;
+    border: 1px solid black;
+}
+
+#reg label {
     display: inline-block;
     text-align: left;
-    width: 8em;
+    width: 14em;
 }
 
 input[type=text] {
@@ -156,6 +170,12 @@ select {
 .span_1_of_4 {
 	width: 23.8%;
 }
+.span_2_of_2 {
+	width: 100%;
+}
+.span_1_of_2 {
+	width: 49.2%;
+}
 
 /*  GO FULL WIDTH BELOW 480 PIXELS */
 @media only screen and (max-width: 480px) {
@@ -175,7 +195,7 @@ select {
 footer {
     background-color: #222D4C;
     text-align: center;
-    position: absolute;
+    position: fixed;
     bottom:0;
     left:0;
     right:0;
