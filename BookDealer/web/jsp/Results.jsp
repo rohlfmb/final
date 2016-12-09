@@ -66,7 +66,7 @@
                     for(int ii = 0; ii < books.size(); ii++) {
                         %> <tr style="border-bottom: 1pt solid #D3D0CB"> <%
                         %> <td> <%
-                            %> <a href="./jsp/Product.jsp?isbn=<%=books.get(ii).getIsbn()%>" style="font-family: Raleway; color: #69B578;"> <%
+                            %> <a href="./jsp/Product.jsp?isbn=<%=books.get(ii).getIsbn()%>" style="font-family: Raleway; color: #69B578; font-weight: bold;"> <%
                                 out.print(books.get(ii).getTitle());
                             %> </a> <%
                         %> </td> <td> <%
@@ -83,7 +83,11 @@
                             %> </p> <%
                         %> </td> <td> <%
                             %> <p> <%
-                                out.print(books.get(ii).getDescription()); 
+                                if(books.get(ii).getDescription().length() >= 100) {
+                                    out.print(books.get(ii).getDescription().substring(0, 100));
+                                } else {
+                                    out.print(books.get(ii).getDescription());
+                                }                                 
                             %> </p> <%
                         %> </td> <%
                         %> </tr> <%
