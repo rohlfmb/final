@@ -9,6 +9,7 @@ and open the template in the editor.
         <title>Login</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="default.css"/>
 
         <style>
             @import url('https://fonts.googleapis.com/css?family=Raleway:300,400,700');
@@ -34,12 +35,15 @@ and open the template in the editor.
             </li>
         </ul>
         
-                <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
         <br/>
         <br/>
 
         <form action="login" method="post" id="loginForm">
-            <input type="text" name="username"><br>
+            <input style="color: #69B578" type="text" name="username"><br>
             <input type="password" name="password"><br>
             <input type="submit" value="Login">
         </form>
