@@ -1,0 +1,246 @@
+
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+    <head>
+        <title>Registration</title>
+        <link rel="stylesheet" type="text/css" href="default.css"/>
+        <style type="text/css">
+            @import url('https://fonts.googleapis.com/css?family=Raleway:300,400,700');
+            .errmsg { 
+                color: red;
+                font-size: 12px;
+            }
+        </style>
+
+        <script type="text/javascript">
+            // Set Up AJAX
+            var request;
+            window.onload = function() {
+                try { // Firefox, Opera, IE7
+                    request = new XMLHttpRequest();
+                }
+                catch (e) {
+                    try { // IE6
+                        request = new ActiveXObject('MSXML2.XMLHTTP.5.0');
+                    }
+                    catch (e) {
+                        request = false;
+                    }
+                }
+                if (!request)
+                    alert('Ajax setup failed');
+            };
+            
+            // Process AJAX for userid
+            function userAjax(value) {
+                var url = 'checkuser?id=' + value;
+                request.open('GET', url, true);
+                request.onreadystatechange = updateUser;
+                request.send(null);
+            }
+
+            // validate form data
+            function validateForm() {
+                var valid = true;
+                
+                // validate name
+                var firstname = get('firstname').value;
+                get('firsterr').innerHTML = '';
+                if (!/^[\-. a-zA-Z]*$/.test(firstname)) {
+                    valid = false;
+                    get('firsterr').innerHTML = '<p>Name can contain only a-z, A-Z, space, period, and hyphen.</p>'
+                }
+                
+                // validate name
+                var lastname = get('lastname').value;
+                get('lasterr').innerHTML = '';
+                if (!/^[\-. a-zA-Z]*$/.test(lastname)) {
+                    valid = false;
+                    get('lasterr').innerHTML = '<p>Name can contain only a-z, A-Z, space, period, and hyphen.</p>'
+                }
+                
+                // validate email and cnfmamil
+                var email   = get('email').value;
+                var cnfmail = get('cnfmail').value;
+                get('emailerr').innerHTML = '';
+                if (!/^[.@\-a-zA-Z0-9]*$/.test(email)) {
+                    valid = false;
+                    get('emailerr').innerHTML = '<p>Email address can contain only a-z, A-Z, 0-9, period, and @.</p>'
+                }
+                else if (email != cnfmail) {
+                    valid = false;
+                    get('emailerr').innerHTML = '<p>The email addresses you entered do not match.</p>'
+                }
+                
+                // validate user
+                var user = get('user').value;
+                get('usererr').innerHTML = '';
+                if (!/^[\-_a-zA-Z0-9]*$/.test(user)) {
+                    valid = false;
+                    get('usererr').innerHTML = '<p>Username can contain only a-z, A-Z, 0-9, underscore, and hyphen.</p>'
+                }
+                if ((get('user').style.color) == "red") {
+                    valid = false
+                    get ('usererr').innerHTML = '<p>That username is already in use.</p>';
+                }
+                /*
+                // validate pass
+                var pass    = get('pass').value;
+                var cnfpass = get('cnfpass').value;
+                get('passerr').innerHTML = '';
+                if (!/^[!$?\-a-zA-Z0-9]*$/.test(pass)) {
+                    valid = false;
+                    get('passerr').innerHTML = '<p>Passwords can contain only a-z, A-Z, 0-9, \'!\', \'$\', and \'?\'.</p>'
+                }
+                else if (pass !== cnfpass){
+                    valid = false;
+                    get('passerr').innerHTML = '<p>The passwords you entered do not match.</p>';
+                }
+                */
+                // validate phone
+                var phone = get('phone').value;
+                get('phoneerr').innerHTML = '';
+                if (phone == null) {
+                    phone = '111-111-1111'
+                }
+                else if (!/^[\-0-9]*$/.test(phone)) {
+                    valid = false;
+                    get('phoneerr').innerHTML = '<p>Phone numbers can only contain 0-9 and hyphen.</p>'
+                }
+                
+                
+                if (valid)
+                    disable('subscribe');
+                return valid;
+            }
+
+
+            // shortcut for accessing DOM elements by id
+            function get(id) {
+                return document.getElementById(id);
+            }
+
+        </script>
+
+    </head>
+
+    <body>
+        <ul>
+            <li>
+                <a href="home.html">
+                    <img src="logo.png" alt="Logo" style="max-width:150px"/>
+                </a>          
+            <li>
+              <form method="post" action="search">
+                  <input style='width:20em' name="search" type="text" placeholder="Search..." required>
+                  <select name="type" required>
+                      <option selected="selected" disabled>Select an Option</option>
+                      <option value="title">Title</option>
+                      <option value="author">Author</option>
+                      <option value="isbn">ISBN</option>
+                  </select>
+                  <input type="submit" value='Search'>
+              </form>          
+            </li>
+            <li style="float:right; padding-top: 15px; padding-right: 15px"><a href="./jsp/Account.jsp">Account</a></li>
+        </ul>
+
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <center><h2>Register</h2></center>
+        <form method="post" action="http://grove.cs.jmu.edu/cs347/showRequest"
+              id="reg" onsubmit="return validateForm()">
+
+            <div class="section group">
+                <div class="col span_1_of_2">
+                    <p> 
+                        <label>First Name: <br />
+                            <input type="text" id="firstname" name="name" size="30" required="required" onchange="this.value = this.value.trim()" />
+                        </label>
+                        <span id="firsterr" class="errmsg"> </span>
+                    </p>
+                    
+                    <p> 
+                        <label>Last Name: <br />
+                            <input type="text" id="lastname" name="name" size="30" required="required" onchange="this.value = this.value.trim()" />
+                        </label>
+                        <span id="lasterr" class="errmsg"> </span>
+                    </p>
+                    
+                    <p>
+                        <label>Username: <br />
+                            <input type="text" id="user" name="user" size="30" required="required" onchange="this.value = this.value.trim()" onkeyup="userAjax(this.value)" />
+                        </label>
+                        <span id="usererr" class="errmsg"> </span>
+                    </p>
+
+                    <p>
+                        <label>Password: <br />
+                            <input type="password" id="pass" name="pass" size="30" required="required" onchange="this.value = this.value.trim() "/>
+                        </label>
+                        <span id="passerr" class="errmsg"> </span>
+                    </p>
+
+                    <p>
+                        <label>Confirm Password: <br />
+                            <input type="password" id="cnfpass" name="cnfpass" size="30" required="required" onchange="this.value = this.value.trim()"/>
+                        </label>
+                    </p>
+                </div>
+
+                <div class="col span_1_of_2">
+                    <p>
+                        <label>Email Address: <br />
+                            <input type="text" id="email" name="email" size="30" required="required" onchange="this.value = this.value.trim()" />
+                        </label>
+                    </p>
+
+                    <p>
+                        <label>Confirm Email Address: <br />
+                            <input type="text" id="cnfmail" name="cnfmail" size="30" required="required" onchange="this.value = this.value.trim()" />
+                        </label>
+                        <span id="emailerr" class="errmsg"> </span>
+                    </p>
+
+                    <p>
+                        <label>Phone Number: xxx-xxx-xxxx<br />
+                            <input type="text" id="phone" name="phone" size="30" onchange="this.value = this.value.trim()" />
+                        </label>
+                        <span id="phoneerr" class="errmsg"> </span>
+                    </p>
+
+                    <p>
+                        <label>Country: <br />
+                            <select id="country" name="country">
+                                <option selected disabled hidden>Select a Country</option>
+                                <option value="canada">Canada</option>
+                                <option value="france">France</option>
+                                <option value="germany">Germany</option>
+                                <option value="spain">Spain</option>
+                                <option value="usa">United States</option>
+                            </select>
+                        </label>
+                        <span id="countryerr" class="errmsg"> </span>
+                    </p>
+
+                    <p> 
+                        <input type="submit" name="send" value="Submit" id="submit" />
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="button" value="Clear Form" id="clear" onclick="clearForm()"/>
+                    </p>
+                </div>
+            </div>
+        </form>
+
+        <footer>
+            <a href="about.html">About Us</a>
+        </footer>
+    </body>
+</html>
