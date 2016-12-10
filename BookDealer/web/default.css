@@ -64,7 +64,7 @@ ul li a {
     transition: 0.3s;
 }
 
-form {
+#search {
     width: auto;
     margin-top: 25px;
     margin-left: 150px;

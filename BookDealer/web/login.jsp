@@ -22,7 +22,7 @@ and open the template in the editor.
                     <img src="logo.png" alt="Logo" style="max-width:150px"/>
                 </a>          
             <li>
-                <form method="post" action="search">
+                <form id="search" method="post" action="search">
                     <input style='width:20em' name="search" type="text" placeholder="Search..." required>
                     <select name="type">
                         <option selected="selected" disabled>Select an Option</option>
