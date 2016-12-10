@@ -44,8 +44,17 @@ and open the template in the editor.
         
         <center>
             <form id="loginForm" action="login" method="post">
-                <input style="color: #69B578" type="text" name="username"><br>
-                <input type="password" name="password"><br>
+                <p>
+                    <label>Username:
+                        <input type="text" size="30" name="username">
+                    </label>                    
+                </p>
+                
+                <p>
+                    <label>Password:
+                        <input type="password" name="password">
+                    </label>
+                </p>
                 <input type="submit" value="Login">
             </form>
         </center>
