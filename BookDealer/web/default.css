@@ -70,37 +70,42 @@ ul li a {
     margin-left: 150px;
 }
 
-#reg {
+#reg, #loginForm {
     background-color: white;
     border: solid 0.5em #222D4C;
     margin-left: auto;
     margin-right: auto;
-    padding: 1em 4em 1em 4em;
+}
+
+#reg {
+    padding: 1em 4em 1em 3em;
     width: 35em;
 }
 
-#login input[type=text] {
-    background-color: white;
+#loginForm {
+    padding: 1em 4em 1em 3em;
+    width: 20em;
+}
+
+#reg input[type=text], #loginForm input[type=text] {
+    background-color: #F9F9F9;
+    border: 1px solid black;
     color: #242228;
-}
-
-#login input[type=password] {
-    
-}
-
-#reg input[type=text] {
     font-family: 'Raleway';
+}
+
+input[type=password], input[type=email] {
+    background-color: #F9F9F9;
+    border: 1px solid black;
     color: #242228;
-    background-color: #F9F9F9;
-    border: 1px solid black;
+    font-family: 'Raleway';
+    height: 30px;
+    padding-left: 1em;
+    padidng-right: 1em;
+    width: 215px;
 }
 
-#reg imput[type=password] {
-    background-color: #F9F9F9;
-    border: 1px solid black;
-}
-
-#reg label {
+#reg label, #loginForm label {
     display: inline-block;
     text-align: left;
     width: 14em;

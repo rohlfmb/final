@@ -100,6 +100,10 @@
                     valid = false;
                     get('passerr').innerHTML = '<p>The passwords you entered do not match.</p>';
                 }
+                else if (pass.length < 6) {
+                    valid = false;
+                    get('passerr').innerHTML = '<p>Passwords must be at least 6 characters long.</p>'
+                }
                 
                 // validate phone
                 var phone = get('phone').value;
@@ -107,9 +111,9 @@
                 if (phone == null) {
                     phone = '111-111-1111'
                 }
-                else if (!/^[\-0-9]*$/.test(phone)) {
+                else if (!/^[0-9]{3}\-[0-9]{3}\-[0-9]{4}$/.test(phone)) {
                     valid = false;
-                    get('phoneerr').innerHTML = '<p>Phone numbers can only contain 0-9 and hyphen.</p>'
+                    get('phoneerr').innerHTML = '<p>Phone numbers must match the format \'xxx-xxx-xxxx\'.</p>'
                 }
                 
                 
@@ -154,7 +158,9 @@
         <br/>
         <br/>
         <br/>
-        <center><h2>Register</h2></center>
+        
+        <center><h2>Register</h2>
+            
         <form method="post" action="http://grove.cs.jmu.edu/cs347/showRequest"
               id="reg" onsubmit="return validateForm()">
 
@@ -185,40 +191,40 @@
                         <label>Password: <br />
                             <input type="password" id="pass" name="pass" size="30" required="required" onchange="this.value = this.value.trim() "/>
                         </label>
-                        <span id="passerr" class="errmsg"> </span>
                     </p>
 
                     <p>
                         <label>Confirm Password: <br />
                             <input type="password" id="cnfpass" name="cnfpass" size="30" required="required" onchange="this.value = this.value.trim()"/>
                         </label>
+                        <span id="passerr" class="errmsg"> </span>
                     </p>
                 </div>
 
                 <div class="col span_1_of_2">
                     <p>
                         <label>Email Address: <br />
-                            <input type="text" id="email" name="email" size="30" required="required" onchange="this.value = this.value.trim()" />
+                            <input type="email" id="email" name="email" size="30" required="required" onchange="this.value = this.value.trim()" />
                         </label>
                     </p>
 
                     <p>
                         <label>Confirm Email Address: <br />
-                            <input type="text" id="cnfmail" name="cnfmail" size="30" required="required" onchange="this.value = this.value.trim()" />
+                            <input type="email" id="cnfmail" name="cnfmail" size="30" required="required" onchange="this.value = this.value.trim()" />
                         </label>
                         <span id="emailerr" class="errmsg"> </span>
                     </p>
 
                     <p>
-                        <label>Phone Number: xxx-xxx-xxxx<br />
-                            <input type="text" id="phone" name="phone" size="30" onchange="this.value = this.value.trim()" />
+                        <label>Phone Number: (USA only)<br />
+                            <input type="text" id="phone" name="phone1" maxlength="12" size="30" onchange="this.value = this.value.trim()" />
                         </label>
                         <span id="phoneerr" class="errmsg"> </span>
                     </p>
 
                     <p>
                         <label>Country: <br />
-                            <select id="country" name="country">
+                            <select id="country" name="country" required="required">
                                 <option selected disabled hidden>Select a Country</option>
                                 <option value="canada">Canada</option>
                                 <option value="france">France</option>
@@ -238,7 +244,8 @@
                 </div>
             </div>
         </form>
-
+        </center>
+        
         <footer>
             <a href="about.jsp">About Us</a>
         </footer>

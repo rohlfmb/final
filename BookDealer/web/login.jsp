@@ -41,12 +41,15 @@ and open the template in the editor.
         <br/>
         <br/>
         <br/>
-
-        <form action="login" method="post" id="loginForm">
-            <input style="color: #69B578" type="text" name="username"><br>
-            <input type="password" name="password"><br>
-            <input type="submit" value="Login">
-        </form>
+        
+        <center>
+            <form id="loginForm" action="login" method="post">
+                <input style="color: #69B578" type="text" name="username"><br>
+                <input type="password" name="password"><br>
+                <input type="submit" value="Login">
+            </form>
+        </center>
+    
         <%
             if (request.getAttribute("errorMessage") != null)
             {
