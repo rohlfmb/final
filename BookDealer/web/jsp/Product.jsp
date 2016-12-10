@@ -132,6 +132,9 @@
             <p> <b>Year Published:</b> <%=book.getYear()%> </p>
             <p> <b>Description:</b> <%=book.getDescription()%> </p>
             <p> <b>ISBN:</b> <%=book.getIsbn()%> </p>
+            <form  action="../wishlist">
+                <button name="wishlist">Add to Wishlist</button>
+            </form>            
         </div>
 
         <div class="section group" align="center" style="width: 900px; padding-left: 15px; padding-right: 15px; padding-top: 30px;
