@@ -4,10 +4,6 @@
     Author     : rohlf
 --%>
 
-<%@page import="java.sql.SQLException"%>
-<%@page import="java.sql.PreparedStatement"%>
-<%@page import="java.sql.DriverManager"%>
-<%@page import="java.sql.Connection"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.sql.ResultSetMetaData"%>
 <%@page import="java.sql.ResultSet"%>
@@ -31,7 +27,7 @@
                     <img src="logo.png" alt="Logo" style="max-width:150px"/>
                 </a>          
             <li>
-                <form id="search" method="post" action="search">
+                <form method="post" action="search">
                     <input style='width:20em' name="search" type="text" placeholder="Search..." required>
                     <select name="type" required>
                         <option selected="selected" disabled>Select an Option</option>
@@ -46,9 +42,9 @@
                 if ((Boolean) session.getAttribute("loggedIn") == null || (Boolean) session.getAttribute("loggedIn") == false) {
                     response.sendRedirect("../login.jsp");
                 } else {
-                    out.println("<li style=\"float:right; padding-top: 15px; padding-right: 15px\"><a href=\"../logout\">Logout</a></li>");
-                    out.println("<li style=\"float:right; padding-top: 15px; padding-right: 15px\"><a href=\"./Wishlist.jsp\">Wishlist</a></li>");
-                    out.println("<li style=\"float:right; padding-top: 15px; padding-right: 15px\"><a href=\"Account.jsp\">Hello, " + session.getAttribute("userName") + "</a></li>");
+                    out.println("<li style=\"float:right; padding-top: 15px; padding-right: 15px\"><a href=\"logout\">Logout</a></li>");
+                    out.println("<li style=\"float:right; padding-top: 15px; padding-right: 15px\"><a href=\"./wishlist\">Wishlist</a></li>");
+                    out.println("<li style=\"float:right; padding-top: 15px; padding-right: 15px\"><a href=\"./jsp/Account.jsp\">Hello, " + session.getAttribute("userName") + "</a></li>");
                 }
             %>
         </ul>
@@ -60,42 +56,10 @@
         <br>
 
         <%
-            Connection conn = null;
-            ResultSet rs = null;
             ArrayList<Book> wishList = new ArrayList();
+            wishList = (ArrayList<Book>) request.getAttribute("wishList");
 
-            try {
-                Class.forName("com.mysql.jdbc.Driver");
-
-                conn = DriverManager.getConnection("jdbc:mysql://grove.cs.jmu.edu/team21_db", "team21", "f0xtrot9");
-
-                String sql = "SELECT title, author, genre, year, description, isbn FROM Books WHERE " + type + " LIKE ?";
-                PreparedStatement ps = conn.prepareStatement(sql);
-
-                //ps.setString(1, "%" + input + "%");
-                rs = ps.executeQuery();
-
-                while (rs.next()) {
-                    Book book = new Book();
-
-                    book.title = rs.getString("title");
-                    book.author = rs.getString("author");
-                    book.genre = rs.getString("genre");
-                    book.year = rs.getInt("year");
-                    book.description = rs.getString("description");
-                    book.isbn = rs.getString("isbn");
-
-                    wishList.add(book);
-                }
-            } catch (ClassNotFoundException | SQLException e) {
-                System.out.println("Cause is " + e.toString());
-            } finally {
-                rs.close();
-                conn.close();
-            }
-
-            //books = (ArrayList<Book>)request.getAttribute("books");
-//            System.out.println(books.size());
+            System.out.println(wishList.size());
             if (wishList.size() > 0) {
         %>        
         <table style="border-collapse: collapse;" align="center">
@@ -110,7 +74,7 @@
                 for (int ii = 0; ii < wishList.size(); ii++) {
             %> <tr style="border-bottom: 1pt solid #D3D0CB"> <%
                 %> <td> <%
-                    %> <a href="./jsp/Product.jsp?isbn=<%=wishList.get(ii).getIsbn()%>" style="font-family: Raleway; color: #69B578;"> <%
+                    %> <a href="./jsp/Product.jsp?isbn=<%=wishList.get(ii).getIsbn()%>" style="font-family: Raleway; color: #69B578; font-weight: bold;"> <%
                         out.print(wishList.get(ii).getTitle());
                         %> </a> <%
                     %> </td> <td> <%
@@ -123,7 +87,11 @@
                     %> <p> <%                                out.print(wishList.get(ii).getYear());
                         %> </p> <%
                     %> </td> <td> <%
-                    %> <p> <%                                out.print(wishList.get(ii).getDescription());
+                    %> <p> <%                                if (wishList.get(ii).getDescription().length() >= 100) {
+                            out.print(wishList.get(ii).getDescription().substring(0, 100));
+                        } else {
+                            out.print(wishList.get(ii).getDescription());
+                        }
                         %> </p> <%
                     %> </td> <%
                 %> </tr> <%                            }
