@@ -78,14 +78,14 @@ public class search extends HttpServlet {
                 books.add(book);
             }
             
-            for(int ii = 0; ii < books.size(); ii++) {
-                System.out.println(books.get(ii).getTitle());
-                System.out.println(books.get(ii).getAuthor());
-                System.out.println(books.get(ii).getGenre());
-                System.out.println(books.get(ii).getYear());
-                System.out.println(books.get(ii).getDescription());
-                System.out.println(books.get(ii).getIsbn());
-            }
+//            for(int ii = 0; ii < books.size(); ii++) {
+//                System.out.println(books.get(ii).getTitle());
+//                System.out.println(books.get(ii).getAuthor());
+//                System.out.println(books.get(ii).getGenre());
+//                System.out.println(books.get(ii).getYear());
+//                System.out.println(books.get(ii).getDescription());
+//                System.out.println(books.get(ii).getIsbn());
+//            }
             
             RequestDispatcher dispatcher = request.getRequestDispatcher("./jsp/Results.jsp");
             request.setAttribute("search", input);
