@@ -114,7 +114,7 @@ input[type=password], input[type=email] {
     width: 203px;
 }
 
-#reg label, #loginForm label, #passForm label {
+#reg label, #loginForm label, #passForm label, .product label {
     display: inline-block;
     text-align: left;
     width: 14em;
@@ -252,6 +252,13 @@ input[type=radio] {
 
 .product p {
     padding-left: 15px;
+}
+
+.product form input[type=text] {
+    color: #242228;
+    border:1px solid #242228;
+    border-bottom-width: 1px;
+    background-color: #FFFFFF;
 }
 
 footer {
