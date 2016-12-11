@@ -174,6 +174,8 @@
         <br/>
         <br/>
         <br/>
+        <br/>
+        
         
         <%
             String userName = (String)session.getAttribute("userName");
@@ -213,73 +215,87 @@
             }            
         %>
         
-        <center><h2>Account Information</h2>
-            
-        <form method="post" action="../updateaccount"
-              id="reg" onsubmit="return validateForm()">
+        <center>
+            <h2>Account Information</h2>
 
-            <div class="section group">
-                <div class="col span_1_of_2">
-                    <p> 
-                        <label>First Name: <br />
-                            <input type="text" id="firstname" name="firstname" size="30" required="required" onchange="this.value = this.value.trim()" value="<%=fName%>" />
-                        </label>
-                        <span id="firsterr" class="errmsg"> </span>
-                    </p>
-                    
-                    <p> 
-                        <label>Last Name: <br />
-                            <input type="text" id="lastname" name="lastname" size="30" required="required" onchange="this.value = this.value.trim()" value ="<%=lName%>"/>
-                        </label>
-                        <span id="lasterr" class="errmsg"> </span>
-                    </p>
-                    
-                    <p>
-                        <label>Country: <br />
-                            <select id="country" name="country" required="required" >
-                                <option selected disabled hidden>Select a Country</option>
-                                <option value="canada">Canada</option>
-                                <option value="france">France</option>
-                                <option value="germany">Germany</option>
-                                <option value="spain">Spain</option>
-                                <option value="usa">United States</option>
-                            </select>
-                        </label>
-                        <span id="countryerr" class="errmsg"> </span>
-                    </p>
+            <form method="post" action="../updateaccount"
+                  id="reg" onsubmit="return validateForm()">
+
+                <div class="section group">
+                    <div class="col span_1_of_2">
+                        <p> 
+                            <label>First Name: <br />
+                                <input type="text" id="firstname" name="firstname" size="30" required="required" onchange="this.value = this.value.trim()" value="<%=fName%>" />
+                            </label>
+                            <span id="firsterr" class="errmsg"> </span>
+                        </p>
+
+                        <p> 
+                            <label>Last Name: <br />
+                                <input type="text" id="lastname" name="lastname" size="30" required="required" onchange="this.value = this.value.trim()" value ="<%=lName%>"/>
+                            </label>
+                            <span id="lasterr" class="errmsg"> </span>
+                        </p>
+
+                        <p>
+                            <label>Country: <br />
+                                <select id="country" name="country" required="required" >
+                                    <option selected disabled hidden>Select a Country</option>
+                                    <option value="canada">Canada</option>
+                                    <option value="france">France</option>
+                                    <option value="germany">Germany</option>
+                                    <option value="spain">Spain</option>
+                                    <option value="usa">United States</option>
+                                </select>
+                            </label>
+                            <span id="countryerr" class="errmsg"> </span>
+                        </p>
+                    </div>
+
+                    <div class="col span_1_of_2">
+                        <p>
+                            <label>Email Address: <br />
+                                <input type="email" id="email" name="email" size="30" required="required" onchange="this.value = this.value.trim()" value="<%=email%>"/>
+                            </label>
+                        </p>
+
+                        <p>
+                            <label>Confirm Email Address: <br />
+                                <input type="email" id="cnfmail" name="cnfmail" size="30" required="required" onchange="this.value = this.value.trim()" />
+                            </label>
+                            <span id="emailerr" class="errmsg"> </span>
+                        </p>
+
+                        <p>
+                            <label>Phone Number: (USA only)<br />
+                                <input type="text" id="phone" name="phone" maxlength="12" size="30" onchange="this.value = this.value.trim()" value="<%=phNum%>"/>
+                            </label>
+                            <span id="phoneerr" class="errmsg"> </span>
+                        </p>  
+                    </div>
                 </div>
 
-                <div class="col span_1_of_2">
-                    <p>
-                        <label>Email Address: <br />
-                            <input type="email" id="email" name="email" size="30" required="required" onchange="this.value = this.value.trim()" value="<%=email%>"/>
-                        </label>
-                    </p>
-
-                    <p>
-                        <label>Confirm Email Address: <br />
-                            <input type="email" id="cnfmail" name="cnfmail" size="30" required="required" onchange="this.value = this.value.trim()" />
-                        </label>
-                        <span id="emailerr" class="errmsg"> </span>
-                    </p>
-
-                    <p>
-                        <label>Phone Number: (USA only)<br />
-                            <input type="text" id="phone" name="phone" maxlength="12" size="30" onchange="this.value = this.value.trim()" value="<%=phNum%>"/>
-                        </label>
-                        <span id="phoneerr" class="errmsg"> </span>
-                    </p>  
-                </div>
-            </div>
-                        
-            <p> 
-                <span style="padding-left: 13px;">
+                <p> 
                     <input type="submit" name="send" value="Submit" id="submit" />
-                </span>
-            </p>
-        </form>
+                </p>
+            </form>
+            
+            <br/>
+            
+            <div class="section group">
+                <div class="col span_1_of_4">&nbsp;</div>
+                <div class="col span_2_of_4">
+                    <form action="./Password.jsp">
+                        <input type="submit" value="Change Password" style="margin-top: 15px; float: left; margin-left: 80px">
+                    </form>
+                    <form action="./Delete.jsp">
+                        <input type="submit" value="Delete Account" style="margin-top: 15px; float: right; margin-right: 80px">
+                    </form>
+                </div>
+                <div class="col span_1_of_4">&nbsp;</div>
+            </div>
         </center>
-
+                        
         <footer>
             <a href="../about.jsp">About Us</a>
         </footer>

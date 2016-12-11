@@ -49,6 +49,10 @@ public class RegisterServlet extends HttpServlet {
         String email     = request.getParameter("email");
         String phone     = request.getParameter("phone");
         String country   = request.getParameter("country");
+        
+        if (phone.equals("")) {
+            phone = "111-111-1111";
+        }
 
         Connection conn = null;
         ResultSet rs = null;
