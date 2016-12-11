@@ -77,27 +77,31 @@ input[type=text] {
 
 input[type=submit] {
     position:relative;
-    /*padding:6px 15px;*/
+    padding:6px 15px;
     left:5px;
     border:2px solid #222D4C;
-    background-color:#222D4C;
-    color:#F9F9F9;
+    background-color: #F9F9F9;
+    color: #242228;
     font-family: 'Raleway';
-    /*font-weight: bold;*/
+    font-weight: bold;
 }
 
-input[type=submit]:hover  {
-    background-color:#101523;
-    border:2px solid #101523;
-    color:#F9F9F9;
+input[type=submit]:hover {
+    border:2px solid #222D4C;
+    background-color: #69B578;
+    color: #F9F9F9;
 }
 
 select {
-    background-color: #222D4C;
-    color:#F9F9F9;
-    font-family: Raleway;
-    border: 0;
-    line-height: 1;
+    background-color: #F9F9F9;
+    border: 1px solid black;
+    color: #242228;
+    font-family: 'Raleway';
+    height: 35px;
+    padding-right: 1em;
+    padding-left: 1em;
+    margin-left: 1.5em;
+    margin-right: 0.5em;
 }
 
 footer {

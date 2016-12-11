@@ -70,37 +70,47 @@ ul li a {
     margin-left: 150px;
 }
 
-#reg {
+#reg, #loginForm, #recoverForm {
     background-color: white;
     border: solid 0.5em #222D4C;
     margin-left: auto;
     margin-right: auto;
-    padding: 1em 4em 1em 4em;
+}
+
+#reg {
+    padding: 1em 4em 1em 3em;
     width: 35em;
 }
 
-#login input[type=text] {
-    background-color: white;
+#loginForm {
+    padding: 1em 4em 1em 3em;
+    width: 21em;
+}
+
+#recoverForm {
+    padding: 1em 4em 2em 3em;
+    width: 20em;
+}
+
+#reg input[type=text], #loginForm input[type=text], #recoverForm input[type=text] {
+    background-color: #F9F9F9;
+    border: 1px solid black;
     color: #242228;
-}
-
-#login input[type=password] {
-    
-}
-
-#reg input[type=text] {
     font-family: 'Raleway';
+}
+
+input[type=password], input[type=email] {
+    background-color: #F9F9F9;
+    border: 1px solid black;
     color: #242228;
-    background-color: #F9F9F9;
-    border: 1px solid black;
+    font-family: 'Raleway';
+    height: 31px;
+    padding-left: 1em;
+    padidng-right: 1em;
+    width: 215px;
 }
 
-#reg imput[type=password] {
-    background-color: #F9F9F9;
-    border: 1px solid black;
-}
-
-#reg label {
+#reg label, #loginForm label, #recoverForm label {
     display: inline-block;
     text-align: left;
     width: 14em;
@@ -120,29 +130,44 @@ input[type=text]:focus {
     border-bottom-width: 1px;    
 }
 
-input[type=submit] {
+input[type=submit], input[type=button] {
     position:relative;
     padding:6px 15px;
     left:5px;
-    border:2px solid #F9F9F9;
-    background-color:#F9F9F9;
-    color:#242228;
+    border:2px solid #222D4C;
+    background-color: #F9F9F9;
+    color: #242228;
     font-family: 'Raleway';
     font-weight: bold;
 }
 
-input[type=submit]:hover  {
-    border:2px solid #fafafa;
-    background-color:#fafafa;
-    color:#69B578;
+input[type=submit]:hover, input[type=button]:hover {
+    border:2px solid #222D4C;
+    background-color: #69B578;
+    color: #F9F9F9;
 }
 
-select {
+input[type=radio] {
+    float: left;
+}
+
+#search select {
     background-color: #222D4C;
     color:#F9F9F9;
     font-family: Raleway;
     border: 0;
     line-height: 1;
+}
+
+#loginForm select, #reg select {
+    background-color: #F9F9F9;
+    border: 1px solid black;
+    color: #242228;
+    font-family: 'Raleway';
+    height: 35px;
+    padding-left: 1em;
+    padidng-right: 1em;
+    width: 232px;
 }
 
 /* Thanks to http://www.responsivegridsystem.com/calculator/ for the multi-column layout */
