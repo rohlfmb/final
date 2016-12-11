@@ -14,6 +14,7 @@ public class LogoutServlet extends HttpServlet {
             throws IOException {
         HttpSession session = request.getSession(true);
         session.setAttribute("loggedIn", false);
+        session.setAttribute("admin", false);
         session.setAttribute("userName", null);
         response.sendRedirect("home.jsp");
     }
