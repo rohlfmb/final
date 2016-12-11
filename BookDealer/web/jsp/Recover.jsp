@@ -40,15 +40,6 @@
                     <input type="submit" value='Search'>
                 </form>          
             </li>
-            <%
-                if ((Boolean) session.getAttribute("loggedIn") == null || (Boolean) session.getAttribute("loggedIn") == false) {
-                    response.sendRedirect("../login.jsp");
-                } else {
-                    out.println("<li style=\"float:right; padding-top: 15px; padding-right: 15px\"><a href=\"../logout\">Logout</a></li>");
-                    out.println("<li style=\"float:right; padding-top: 15px; padding-right: 15px\"><a href=\"wishlist\">Wishlist</a></li>");
-                    out.println("<li style=\"float:right; padding-top: 15px; padding-right: 15px\"><a href=\"Account.jsp\">" + session.getAttribute("userName") + "</a></li>");
-                }
-            %>
         </ul>
         
         <br/>
@@ -90,36 +81,38 @@
         
         <center>
             <h2>Recover Password</h2>
-            
-            <form id="recoverForm" action="login" method="post" >   
-                
-                <div class="section group">
-                    <div class="col span_1_of_2">
-                        <p>
-                            <label>Username: 
-                                <input type="text" name="username">
-                            </label>
-                        </p>
-                    </div>
-
-                    <div class="col span_1_of_2">
-                        <p>
-                            <input type="radio" name="recovery" >Email
-                            <br/>
-                            <input type="radio" name="recovery" <% 
-                                    if(false) {//phNum.equals("111-111-1111")) {
-                                        %> disabled>Phone Number<%
-                                    }
-                                    else{
-                                        %> >Phone Number<%
-                                    }
-                                    %>
-                        </p>
-                    </div>
-                </div>
-                <input type="submit" value="Recover Password">
-            </form>
         </center>
+        <form id="recoverForm" action="login" method="post" >   
+
+            <div class="section group">
+                <div class="col span_1_of_2">
+                    <p>
+                        <label>Username: </label>
+                    </p>
+                    <p>
+                        <label>Recovery Method: </label>
+                    </p>
+                </div>
+
+                <div class="col span_1_of_2">
+                    <p><input type="text" name="username"></p>
+                    <p style="padding-top:8px; padding-bottom:12px;">
+                        <input type="radio" name="recovery" >Email
+                        <br />
+                        <input type="radio" name="recovery" 
+                        <% 
+                            if(false) {//phNum.equals("111-111-1111")) {
+                                %> disabled>Phone Number<%
+                            }
+                            else{
+                                %> >Phone Number<%
+                            }
+                        %>
+                    </p></span>
+                </div>
+            </div>
+            <center><input type="submit" value="Recover Password"></center>
+        </form>
 
         <footer>
             <a href="../about.jsp">About Us</a>

@@ -88,7 +88,7 @@ ul li a {
 }
 
 #recoverForm {
-    padding: 1em 4em 2em 3em;
+    padding: 1em 4.5em 2em 3em;
     width: 20em;
 }
 
@@ -97,6 +97,10 @@ ul li a {
     border: 1px solid black;
     color: #242228;
     font-family: 'Raleway';
+}
+
+#recoverForm input[type=text] {
+    width: 120px;
 }
 
 input[type=password], input[type=email] {
@@ -110,10 +114,17 @@ input[type=password], input[type=email] {
     width: 215px;
 }
 
-#reg label, #loginForm label, #recoverForm label {
+#reg label, #loginForm label {
     display: inline-block;
     text-align: left;
     width: 14em;
+}
+
+#recoverForm label {
+    display: inline;
+    line-height: 35px;
+    text-align: left;
+    width: 9em;
 }
 
 input[type=text] {
@@ -149,6 +160,7 @@ input[type=submit]:hover, input[type=button]:hover {
 
 input[type=radio] {
     float: left;
+    margin-left: 0px;
 }
 
 #search select {
