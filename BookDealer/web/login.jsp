@@ -42,7 +42,7 @@ and open the template in the editor.
         <br/>
         <br/>
         
-        <center>
+        <center><h2>Login</h2>
             <form id="loginForm" action="login" method="post">
                 <p>
                     <label>Username:

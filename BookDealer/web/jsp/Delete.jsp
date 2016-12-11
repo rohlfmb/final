@@ -20,6 +20,16 @@ and open the template in the editor.
         <style>
             @import url('https://fonts.googleapis.com/css?family=Raleway:300,400,700');
         </style>
+        
+        <script type="text/javascript">
+            
+            function confirmDelete() {
+                if (window.confirm("Are you sure you want to permanently delete your account?\nThis change cannot be undone.")) {
+                    window.open("../home.jsp");
+                }
+            }
+            
+        </script>
     </head>
     <body>
         <ul>
@@ -57,24 +67,13 @@ and open the template in the editor.
         <br/>
         <br/>
 
-    <center>
-        <form id="loginForm" action="login" method="post">
-            <p>
-                <label>Username:
-                    <input type="text" size="30" name="username" required>
-                </label>                    
-            </p>
-
-            <p style="padding-bottom:10px">
-                <label>Password:
-                    <input type="password" name="password" required>
-                </label>
-            </p>
-
-            <input type="submit" value="Login">
-            <br />&nbsp;
-        </form>
-    </center>
+    <center> 			
+	<h2>Delete Account</h2> 			
+	<p style="padding-bottom:15px;">Clicking the button below will <span style="color:red;">permanently delete your account.</span></p> 			
+	<form method="post" action="deleteaccount"> 			
+            <input type="button" value="Delete Account" onclick="confirmDelete()"/> 			
+	</form> 			
+    </center> 
 
     <%
         if (request.getAttribute("errorMessage") != null) {
