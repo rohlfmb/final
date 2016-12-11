@@ -14,7 +14,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Wishlist</title>
-        <link rel="stylesheet" type="text/css" href="default.css"/>
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/default.css"/>
 
         <style>
             @import url('https://fonts.googleapis.com/css?family=Raleway:300,400,700');
@@ -23,11 +23,11 @@
     <body>
         <ul>
             <li>
-                <a href="home.jsp">
-                    <img src="logo.png" alt="Logo" style="max-width:150px"/>
+                <a href="${pageContext.request.contextPath}/home.jsp">
+                    <img src="${pageContext.request.contextPath}/logo.png" alt="Logo" style="max-width:150px"/>
                 </a>          
             <li>
-                <form method="post" action="search">
+                <form method="post" id="search" action="search">
                     <input style='width:20em' name="search" type="text" placeholder="Search..." required>
                     <select name="type" required>
                         <option selected="selected" disabled>Select an Option</option>
@@ -42,9 +42,9 @@
                 if ((Boolean) session.getAttribute("loggedIn") == null || (Boolean) session.getAttribute("loggedIn") == false) {
                     response.sendRedirect("../login.jsp");
                 } else {
-                    out.println("<li style=\"float:right; padding-top: 15px; padding-right: 15px\"><a href=\"logout\">Logout</a></li>");
-                    out.println("<li style=\"float:right; padding-top: 15px; padding-right: 15px\"><a href=\"wishlist\">Wishlist</a></li>");
-                    out.println("<li style=\"float:right; padding-top: 15px; padding-right: 15px\"><a href=\"./jsp/Account.jsp\">Hello, " + session.getAttribute("userName") + "</a></li>");
+                    out.println("<li style=\"float:right; padding-top: 15px; padding-right: 15px;\"><a href=\"../logout\">|&nbsp;&nbsp;&nbsp;&nbsp;Logout</a></li>");
+                    out.println("<li style=\"float:right; padding-top: 15px; padding-right: 15px;\"><a href=\"../wishlist\">|&nbsp;&nbsp;&nbsp;Wishlist</a></li>");
+                    out.println("<li style=\"float:right; padding-top: 15px; padding-right: 15px\"><a href=\"Account.jsp\">" + session.getAttribute("userName") + "</a></li>");
                 }
             %>
         </ul>

@@ -9,7 +9,7 @@ and open the template in the editor.
         <title>Login</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="default.css"/>
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/default.css"/>
 
         <style>
             @import url('https://fonts.googleapis.com/css?family=Raleway:300,400,700');
@@ -18,8 +18,8 @@ and open the template in the editor.
     <body>
         <ul>
             <li>
-                <a href="home.jsp">
-                    <img src="logo.png" alt="Logo" style="max-width:150px"/>
+                <a href="${pageContext.request.contextPath}/home.jsp">
+                    <img src="${pageContext.request.contextPath}/logo.png" alt="Logo" style="max-width:150px"/>
                 </a>          
             <li>
                 <form id="search" method="post" action="search">
@@ -63,7 +63,7 @@ and open the template in the editor.
     
         <center>
             <form action="./jsp/Recover.jsp">
-                <input type="submit" value="Recover Password" style="margin-top: 15px;" onclick="./jsp/Recover.jsp">
+                <input type="submit" value="Recover Password" style="margin-top: 15px;">
             </form>            
         </center>
     
