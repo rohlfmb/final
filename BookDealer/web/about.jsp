@@ -68,14 +68,14 @@
             </p>
 	</div>
 	<div class="col span_1_of_4">
-            <h2>Brendon<br/>Guss</h2>
+            <h2>Brendon Guss</h2>
             
             <p>
                 Senior Computer Science major at JMU, pursuing a career in software engineering
             </p>
 	</div>
 	<div class="col span_1_of_4">
-            <h2>Matthew<br/>Rohlf</h2>
+            <h2>Matthew Rohlf</h2>
             
             <p>
                 Senior Computer Science major at JMU, pursuing a career in software engineering
