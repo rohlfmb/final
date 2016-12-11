@@ -80,6 +80,11 @@ and open the template in the editor.
             {
                 out.println("<br/><center><p>" + request.getAttribute("errorMessage") + "</p></center>");
             }
+            
+            if ((Boolean) session.getAttribute("loggedIn") == null || (Boolean) session.getAttribute("loggedIn") == false) {
+            } else {
+                response.sendRedirect("home.jsp");
+            }
         %>
         <footer>
             <a href="about.jsp">About Us</a>
