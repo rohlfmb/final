@@ -59,8 +59,12 @@ public class DeleteAccountServlet extends HttpServlet {
             
             ps.execute();
             
-            RequestDispatcher rd = request.getRequestDispatcher("login");
-            rd.forward(request, response);
+            /*RequestDispatcher rd = request.getRequestDispatcher("login");
+            rd.forward(request, response);*/
+            session.setAttribute("loggedIn", false);
+            session.setAttribute("admin", false);
+            session.setAttribute("userName", null);
+            response.sendRedirect("home.jsp");
         }
         catch(SQLException e) {
             System.out.println("Error: " + e.getLocalizedMessage());

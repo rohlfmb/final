@@ -73,7 +73,7 @@ and open the template in the editor.
         <%
             if (request.getAttribute("errorMessage") != null)
             {
-                out.println("<br/><center><p>" + request.getAttribute("errorMessage") + "</p></center>");
+                out.println("<br/><center><p style=\"color:red; padding-left:0px;\">" + request.getAttribute("errorMessage") + "</p></center>");
             }
             
             if ((Boolean) session.getAttribute("loggedIn") == null || (Boolean) session.getAttribute("loggedIn") == false) {

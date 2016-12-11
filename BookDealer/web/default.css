@@ -93,7 +93,7 @@ ul li a {
 }
 
 #reg input[type=text], #loginForm input[type=text], #recoverForm input[type=text] {
-    background-color: #EBEBEB;
+    background-color: #F9F9F9;
     border: 1px solid black;
     color: #242228;
     font-family: 'Raleway';

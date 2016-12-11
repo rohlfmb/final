@@ -25,7 +25,7 @@ and open the template in the editor.
             
             function confirmDelete() {
                 if (window.confirm("Are you sure you want to permanently delete your account?\nThis change cannot be undone.")) {
-                    window.open("../home.jsp");
+                    window.open("../deleteaccount", "_self");
                 }
             }
             
@@ -47,6 +47,7 @@ and open the template in the editor.
                         <option value="isbn">ISBN</option>
                     </select>
                     <input type="submit" value='Search'>
+                    ]
                 </form>          
             </li>
             <%
