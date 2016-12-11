@@ -99,7 +99,7 @@ input[type=password], input[type=email] {
     border: 1px solid black;
     color: #242228;
     font-family: 'Raleway';
-    height: 30px;
+    height: 31px;
     padding-left: 1em;
     padidng-right: 1em;
     width: 215px;
@@ -125,29 +125,40 @@ input[type=text]:focus {
     border-bottom-width: 1px;    
 }
 
-input[type=submit] {
+input[type=submit], input[type=button] {
     position:relative;
     padding:6px 15px;
     left:5px;
-    border:2px solid #F9F9F9;
-    background-color:#F9F9F9;
-    color:#242228;
+    border:2px solid #222D4C;
+    background-color: #F9F9F9;
+    color: #242228;
     font-family: 'Raleway';
     font-weight: bold;
 }
 
-input[type=submit]:hover  {
-    border:2px solid #fafafa;
-    background-color:#fafafa;
-    color:#69B578;
+input[type=submit]:hover, input[type=button]:hover {
+    border:2px solid #222D4C;
+    background-color: #69B578;
+    color: #F9F9F9;
 }
 
-select {
+#search select {
     background-color: #222D4C;
     color:#F9F9F9;
     font-family: Raleway;
     border: 0;
     line-height: 1;
+}
+
+#loginForm select, #reg select {
+    background-color: #F9F9F9;
+    border: 1px solid black;
+    color: #242228;
+    font-family: 'Raleway';
+    height: 35px;
+    padding-left: 1em;
+    padidng-right: 1em;
+    width: 232px;
 }
 
 /* Thanks to http://www.responsivegridsystem.com/calculator/ for the multi-column layout */

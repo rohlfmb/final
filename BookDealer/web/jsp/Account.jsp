@@ -20,6 +20,10 @@
 
         <style>
             @import url('https://fonts.googleapis.com/css?family=Raleway:300,400,700');
+            .errmsg { 
+                color: red;
+                font-size: 12px;
+            }
         </style>
         
         <script type="text/javascript">
@@ -114,18 +118,14 @@
                 // validate phone
                 var phone = get('phone').value;
                 get('phoneerr').innerHTML = '';
-                if (phone == null) {
-                    phone = '111-111-1111'
+                if (phone === null) {
+                    phone = '111-111-1111';
                 }
                 else if (!/^[0-9]{3}\-[0-9]{3}\-[0-9]{4}$/.test(phone)) {
                     valid = false;
-                    get('phoneerr').innerHTML = '<p>Phone numbers must match the format \'xxx-xxx-xxxx\'.</p>'
+                    get('phoneerr').innerHTML = '<p>Phone numbers must match the format \'xxx-xxx-xxxx\'.</p>';
                 }
                 
-                
-                if (valid)
-                    disable('subscribe');
-                return valid;
             }
 
 
@@ -262,7 +262,7 @@
 
                     <p>
                         <label>Phone Number: (USA only)<br />
-                            <input type="text" id="phone" name="phone1" maxlength="12" size="30" onchange="this.value = this.value.trim()" value="<%=phNum%>"/>
+                            <input type="text" id="phone" name="phone" maxlength="12" size="30" onchange="this.value = this.value.trim()" value="<%=phNum%>"/>
                         </label>
                         <span id="phoneerr" class="errmsg"> </span>
                     </p>
@@ -274,7 +274,7 @@
             </div>
                         
             <p> 
-                <span style="float: left; padding-left: 13px; margin-left: auto; margin-right: auto;">
+                <span style="padding-left: 13px;">
                     <input type="submit" name="send" value="Submit" id="submit" />
                 </span>
             </p>

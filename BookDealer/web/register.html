@@ -115,13 +115,15 @@
                     valid = false;
                     get('phoneerr').innerHTML = '<p>Phone numbers must match the format \'xxx-xxx-xxxx\'.</p>'
                 }
-                
-                
-                if (valid)
-                    disable('subscribe');
-                return valid;
+
             }
 
+            
+            function clearForm() {
+                if (confirm('Are you sure you want to clear the submission form?')) {
+                    get('reg').reset();
+                }
+            }
 
             // shortcut for accessing DOM elements by id
             function get(id) {
@@ -168,14 +170,14 @@
                 <div class="col span_1_of_2">
                     <p> 
                         <label>First Name: <br />
-                            <input type="text" id="firstname" name="name" size="30" required="required" onchange="this.value = this.value.trim()" />
+                            <input type="text" id="firstname" name="firstname" size="30" required="required" onchange="this.value = this.value.trim()" />
                         </label>
                         <span id="firsterr" class="errmsg"> </span>
                     </p>
                     
                     <p> 
                         <label>Last Name: <br />
-                            <input type="text" id="lastname" name="name" size="30" required="required" onchange="this.value = this.value.trim()" />
+                            <input type="text" id="lastname" name="lastname" size="30" required="required" onchange="this.value = this.value.trim()" />
                         </label>
                         <span id="lasterr" class="errmsg"> </span>
                     </p>
@@ -217,7 +219,7 @@
 
                     <p>
                         <label>Phone Number: (USA only)<br />
-                            <input type="text" id="phone" name="phone1" maxlength="12" size="30" onchange="this.value = this.value.trim()" />
+                            <input type="text" id="phone" name="phone" maxlength="12" size="30" onchange="this.value = this.value.trim()" />
                         </label>
                         <span id="phoneerr" class="errmsg"> </span>
                     </p>
@@ -235,10 +237,11 @@
                         </label>
                         <span id="countryerr" class="errmsg"> </span>
                     </p>
-
+                    
                     <p> 
+                        <br />
                         <input type="submit" name="send" value="Submit" id="submit" />
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;
                         <input type="button" value="Clear Form" id="clear" onclick="clearForm()"/>
                     </p>
                 </div>
