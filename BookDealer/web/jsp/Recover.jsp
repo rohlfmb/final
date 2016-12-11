@@ -51,7 +51,7 @@
         <center>
             <h2>Recover Password</h2>
         </center>
-        <form id="recoverForm" action="login" method="post" >   
+        <form id="recoverForm" action="../sent.html" method="post" >   
 
             <div class="section group">
                 <div class="col span_1_of_2">
