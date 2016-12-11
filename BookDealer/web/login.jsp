@@ -59,20 +59,15 @@ and open the template in the editor.
                 <input type="submit" value="Login">
                 <br />&nbsp;
             </form>
-        </center>
-        <br />
-        <center>
-            <div class="section group">
-                <div class="col span_1_of_4">&nbsp;</div>
-                    <div class="col span_2_of_4">
-                        <form action="./register.html">
-                            <input type="submit" value="Register" style="margin-top: 15px; float: left; margin-left: 100px">
-                        </form>
-                        <form action="./jsp/Recover.jsp">
-                            <input type="submit" value="Recover Password" style="margin-top: 15px; float: right; margin-right: 100px">
-                        </form>
-                    </div>
-                <div class="col span_1_of_4">&nbsp;</div>
+            <br />
+            <div class='bottom'>
+                <form>
+                    <input type="button" value="Register" onclick="location.href='./register.html'"/>
+                    &nbsp;&nbsp;&nbsp;
+                    <input type="button" value="Recover Password" onclick="location.href='./jsp/Recover.jsp'"/>
+                    &nbsp;
+                </form>
+            </div>
         </center>
     
         <%

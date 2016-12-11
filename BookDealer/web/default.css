@@ -70,7 +70,7 @@ ul li a {
     margin-left: 60px;
 }
 
-#reg, #loginForm, #recoverForm, #passForm {
+#reg, #recoverForm, #loginForm, #passForm {
     background-color: white;
     border: solid 0.5em #222D4C;
     margin-left: auto;
@@ -82,19 +82,14 @@ ul li a {
     width: 35em;
 }
 
-#loginForm {
-    padding: 1em 3em 1em 3em;
-    width: 21em;
-}
-
 #recoverForm {
     padding: 1em 4.5em 2em 3em;
     width: 20em;
 }
 
-#passForm {
+#loginForm, #passForm {
     padding: 1em 4.5em 1em 3em;
-    width: 21em; 
+    width: 16em; 
 }
 
 #reg input[type=text], #loginForm input[type=text], #recoverForm input[type=text] {
@@ -116,10 +111,10 @@ input[type=password], input[type=email] {
     height: 31px;
     padding-left: 1em;
     padding-right: 1em;
-    width: 215px;
+    width: 203px;
 }
 
-#reg label, #loginForm, #passForm label {
+#reg label, #loginForm label, #passForm label {
     display: inline-block;
     text-align: left;
     width: 14em;
@@ -176,7 +171,7 @@ input[type=radio] {
     line-height: 1;
 }
 
-#loginForm select, #reg select {
+#reg select {
     background-color: #F9F9F9;
     border: 1px solid black;
     color: #242228;
@@ -185,6 +180,10 @@ input[type=radio] {
     padding-left: 1em;
     padidng-right: 1em;
     width: 232px;
+}
+
+.bottom {
+    margin-top: 15px;
 }
 
 /* Thanks to http://www.responsivegridsystem.com/calculator/ for the multi-column layout */

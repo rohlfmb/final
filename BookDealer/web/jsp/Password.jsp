@@ -104,7 +104,7 @@
                 </p>
 
                 <p> 
-                    <span style="padding-left: 13px; padding-top: ">
+                    <span style="padding-left: 13px;">
                         <input type="submit" name="send" value="Submit" id="submit" />
                     </span>
                 </p>

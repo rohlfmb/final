@@ -281,18 +281,13 @@
             </form>
             
             <br/>
-            
-            <div class="section group">
-                <div class="col span_1_of_4">&nbsp;</div>
-                <div class="col span_2_of_4">
-                    <form action="./Password.jsp">
-                        <input type="submit" value="Change Password" style="margin-top: 15px; float: left; margin-left: 80px">
-                    </form>
-                    <form action="./Delete.jsp">
-                        <input type="submit" value="Delete Account" style="margin-top: 15px; float: right; margin-right: 80px">
-                    </form>
-                </div>
-                <div class="col span_1_of_4">&nbsp;</div>
+            <div class='bottom'>
+                <form>
+                    <input type="button" value="Change Password" onclick="location.href='./Password.jsp'"/>
+                    &nbsp;&nbsp;&nbsp;
+                    <input type="button" value="Delete Account" onclick="location.href='./Delete.jsp'"/>
+                    &nbsp;&nbsp;
+                </form>
             </div>
         </center>
                         
