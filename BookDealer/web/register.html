@@ -108,7 +108,7 @@
                 // validate phone
                 var phone = get('phone').value;
                 get('phoneerr').innerHTML = '';
-                if (phone == null) {
+                if (phone === "") {
                     phone = '111-111-1111'
                 }
                 else if (!/^[0-9]{3}\-[0-9]{3}\-[0-9]{4}$/.test(phone)) {

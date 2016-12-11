@@ -6,6 +6,9 @@
 package bookdeals;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -71,6 +74,9 @@ public class RegisterServlet extends HttpServlet {
                 rs = ps.executeQuery();
             } while (rs.next());
             
+            password = hashPassword("password");
+            System.out.println(password);
+            
             String sql = "INSERT INTO Users VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
             PreparedStatement ps = conn.prepareStatement(sql);
 
@@ -108,6 +114,21 @@ public class RegisterServlet extends HttpServlet {
             conn.close();
         }
     }
+    
+    private static String hashPassword(String password) {
+       String digest;
+       try {
+           MessageDigest md = MessageDigest.getInstance("md5");
+           md.reset();
+           byte[] bytes = md.digest(password.getBytes());
+           digest = new BigInteger(1, bytes).toString(16);
+       }
+       catch (NoSuchAlgorithmException nsae) {
+           nsae.printStackTrace();
+           digest = null;
+       }
+       return digest;
+  }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -155,5 +176,9 @@ public class RegisterServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+    private String pwdencrypt(String password) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
 }
