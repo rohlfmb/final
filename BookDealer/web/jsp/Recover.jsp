@@ -48,37 +48,6 @@
         <br/>
         <br/>
         
-        <%
-//            String userName = (String)session.getAttribute("userName");
-//
-//            // SQL Stuff...
-//            Connection conn = null;
-//            ResultSet rs = null;
-//            ArrayList<Book> books = new ArrayList();
-//            String phNum = "";
-//
-//            try {
-//                Class.forName("com.mysql.jdbc.Driver");
-//
-//                conn = DriverManager.getConnection("jdbc:mysql://grove.cs.jmu.edu/team21_db", "team21", "f0xtrot9");
-//
-//                String sql = "SELECT * FROM Users WHERE username=\"" + userName + "\";";
-//                PreparedStatement ps = conn.prepareStatement(sql);
-//                
-//                rs = ps.executeQuery();
-//                
-//                rs.next();
-//                phNum = rs.getString("phone_num");                
-//                
-//                rs.close();
-//            }
-//            catch(Exception e) {
-//                System.out.println("in recover.jsp servlet");
-//                System.out.println("Error for: " + e.getLocalizedMessage());
-//            }
-            
-        %>
-        
         <center>
             <h2>Recover Password</h2>
         </center>
@@ -108,7 +77,7 @@
                                 %> >Phone Number<%
                             }
                         %>
-                    </p></span>
+                    </p>
                 </div>
             </div>
             <center><input type="submit" value="Recover Password"></center>
