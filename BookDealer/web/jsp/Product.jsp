@@ -44,11 +44,11 @@
             </li>
             <%
                 if ((Boolean) session.getAttribute("loggedIn") == null || (Boolean) session.getAttribute("loggedIn") == false) {
-                    out.println("<li style=\"float:right; padding-top: 15px; padding-right: 15px\"><a href=\"../login.jsp\">Login</a></li>");
+                    out.println("<li style=\"float:right; padding-top: 15px; padding-right: 15px\"><a href=\"" + request.getContextPath() + "/login.jsp\">Login</a></li>");
                 } else {
-                    out.println("<li style=\"float:right; padding-top: 15px; padding-right: 15px;\"><a href=\"../logout\">|&nbsp;&nbsp;&nbsp;&nbsp;Logout</a></li>");
-                    out.println("<li style=\"float:right; padding-top: 15px; padding-right: 15px;\"><a href=\"../wishlist\">|&nbsp;&nbsp;&nbsp;Wishlist</a></li>");
-                    out.println("<li style=\"float:right; padding-top: 15px; padding-right: 15px\"><a href=\"Account.jsp\">" + session.getAttribute("userName") + "</a></li>");
+                    out.println("<li style=\"float:right; padding-top: 15px; padding-right: 15px;\"><a href=\"" + request.getContextPath() + "/logout\">|&nbsp;&nbsp;&nbsp;&nbsp;Logout</a></li>");
+                    out.println("<li style=\"float:right; padding-top: 15px; padding-right: 15px;\"><a href=\"" + request.getContextPath() + "/wishlist\">|&nbsp;&nbsp;&nbsp;Wishlist</a></li>");
+                    out.println("<li style=\"float:right; padding-top: 15px; padding-right: 15px\"><a href=\"" + request.getContextPath() + "/jsp/Account.jsp\">" + session.getAttribute("userName") + "</a></li>");
                 }
             %>
         </ul>
@@ -143,9 +143,7 @@
                 }
 
                 if (((Boolean) session.getAttribute("loggedIn") == null || (Boolean) session.getAttribute("loggedIn") == false)) {
-                }
-                else if (wishList == null || Book.containsBook(wishList, book.getIsbn()))
-                {
+                } else if (wishList == null || Book.containsBook(wishList, book.getIsbn())) {
                     out.println("<form action=\"../wishlistremove\" method=\"post\"><button name=\"wishlistremove\" value=\"" + book.getIsbn() + "\">Remove from Wishlist</button></form>");
                 }
             %>
@@ -212,7 +210,7 @@
         </div>
 
         <footer>
-            <a href="../about.jsp">About Us</a>
+            <a href="${pageContext.request.contextPath}/about.jsp">About Us</a>
         </footer>
     </body>
 </html>

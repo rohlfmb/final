@@ -49,7 +49,7 @@
         </p>
         
         <footer>
-            <a href="about.jsp">About Us</a>
+            <a href="${pageContext.request.contextPath}/about.jsp">About Us</a>
         </footer>
     </body>
 </html>
