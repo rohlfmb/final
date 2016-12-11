@@ -4,6 +4,7 @@
     Author     : rohlf
 --%>
 
+<%@page import="java.util.ArrayList"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="java.sql.ResultSet"%>
@@ -46,7 +47,7 @@
                     out.println("<li style=\"float:right; padding-top: 15px; padding-right: 15px\"><a href=\"../login.jsp\">Login</a></li>");
                 } else {
                     out.println("<li style=\"float:right; padding-top: 15px; padding-right: 15px\"><a href=\"logout\">Logout</a></li>");
-                    out.println("<li style=\"float:right; padding-top: 15px; padding-right: 15px\"><a href=\"Wishlist.jsp\">Wishlist</a></li>");
+                    out.println("<li style=\"float:right; padding-top: 15px; padding-right: 15px\"><a href=\"../wishlist\">Wishlist</a></li>");
                     out.println("<li style=\"float:right; padding-top: 15px; padding-right: 15px\"><a href=\"wishlist\">Hello, " + session.getAttribute("userName") + "</a></li>");
                 }
             %>
@@ -106,16 +107,15 @@
                 priceRS.close();
                 conn.close();
             }
-            
+
             double prices[] = {amPrice, bnPrice, bmPrice, wmPrice};
             double lowest = 0.0;
 
             for (int ii = 0; ii < 4; ii++) {
-                if(ii == 0 && prices[ii] != -1) {
+                if (ii == 0 && prices[ii] != -1) {
                     lowest = amPrice;
-                }
-                else {
-                    if(prices[ii] < lowest && prices[ii] != -1) {
+                } else {
+                    if (prices[ii] < lowest && prices[ii] != -1) {
                         lowest = prices[ii];
                     }
                 }
@@ -132,9 +132,24 @@
             <p> <b>Year Published:</b> <%=book.getYear()%> </p>
             <p> <b>Description:</b> <%=book.getDescription()%> </p>
             <p> <b>ISBN:</b> <%=book.getIsbn()%> </p>
-            <form  action="../wishlist">
-                <button name="wishlist">Add to Wishlist</button>
-            </form>            
+
+            <%
+                ArrayList<Book> wishList = new ArrayList();
+                wishList = (ArrayList<Book>) session.getAttribute("wishList");
+
+                if (((Boolean) session.getAttribute("loggedIn") == null || (Boolean) session.getAttribute("loggedIn") == false) || wishList == null || Book.containsBook(wishList, book.getIsbn())) {
+                } else {
+                    out.println("<form action=\"../wishlistupdate\" method=\"post\"><button name=\"wishlistupdate\" value=\"" + book.getIsbn() + "\">Add to Wishlist</button></form>");
+                }
+
+                if (((Boolean) session.getAttribute("loggedIn") == null || (Boolean) session.getAttribute("loggedIn") == false)) {
+                }
+                else if (wishList == null || Book.containsBook(wishList, book.getIsbn()))
+                {
+                    out.println("<form action=\"../wishlistremove\" method=\"post\"><button name=\"wishlistremove\" value=\"" + book.getIsbn() + "\">Remove from Wishlist</button></form>");
+                }
+            %>
+
         </div>
 
         <div class="section group" align="center" style="width: 900px; padding-left: 15px; padding-right: 15px; padding-top: 30px;
@@ -142,61 +157,56 @@
             <div class="col span_1_of_4">
                 <h2>Amazon</h2>
 
-                <%
-                    if(amPrice == -1) {
-                        %> <p> Price Not Available </p> <%
+                <%                    if (amPrice
+                            == -1) {
+                %> <p> Price Not Available </p> <%
+                } else if (amPrice == lowest) {
+                %> <p style="font-weight: bold; color: #69B578"> $<%=df.format(amPrice)%> </p> <%
+                } else {
+                %> <p> $<%=df.format(amPrice)%> </p> <%
                     }
-                    else if(amPrice == lowest) {
-                        %> <p style="font-weight: bold; color: #69B578"> $<%=df.format(amPrice)%> </p> <%
-                    }
-                    else {
-                        %> <p> $<%=df.format(amPrice)%> </p> <%
-                    }                
                 %>
             </div>
             <div class="col span_1_of_4">
                 <h2>Barnes & Noble</h2>
 
                 <%
-                    if(bnPrice == -1) {
-                        %> <p> Price Not Available </p> <%
+                    if (bnPrice
+                            == -1) {
+                %> <p> Price Not Available </p> <%
+                } else if (bnPrice == lowest) {
+                %> <p style="font-weight: bold; color: #69B578"> $<%=df.format(bnPrice)%> </p> <%
+                } else {
+                %> <p> $<%=df.format(bnPrice)%> </p> <%
                     }
-                    else if(bnPrice == lowest) {
-                        %> <p style="font-weight: bold; color: #69B578"> $<%=df.format(bnPrice)%> </p> <%
-                    }
-                    else {
-                        %> <p> $<%=df.format(bnPrice)%> </p> <%
-                    }                
                 %>
             </div>
             <div class="col span_1_of_4">
                 <h2>Books-A-Million</h2>
 
                 <%
-                    if(bmPrice == -1) {
-                        %> <p> Price Not Available </p> <%
+                    if (bmPrice
+                            == -1) {
+                %> <p> Price Not Available </p> <%
+                } else if (bmPrice == lowest) {
+                %> <p style="font-weight: bold; color: #69B578"> $<%=df.format(bmPrice)%> </p> <%
+                } else {
+                %> <p> $<%=df.format(bmPrice)%> </p> <%
                     }
-                    else if(bmPrice == lowest) {
-                        %> <p style="font-weight: bold; color: #69B578"> $<%=df.format(bmPrice)%> </p> <%
-                    }
-                    else {
-                        %> <p> $<%=df.format(bmPrice)%> </p> <%
-                    }                
                 %>
             </div>
             <div class="col span_1_of_4">
                 <h2>WalMart</h2>
 
                 <%
-                    if(wmPrice == -1) {
-                        %> <p> Price Not Available </p> <%
+                    if (wmPrice
+                            == -1) {
+                %> <p> Price Not Available </p> <%
+                } else if (wmPrice == lowest) {
+                %> <p style="font-weight: bold; color: #69B578"> $<%=df.format(wmPrice)%> </p> <%
+                } else {
+                %> <p> $<%=df.format(wmPrice)%> </p> <%
                     }
-                    else if(wmPrice == lowest) {
-                        %> <p style="font-weight: bold; color: #69B578"> $<%=df.format(wmPrice)%> </p> <%
-                    }
-                    else {
-                        %> <p> $<%=df.format(wmPrice)%> </p> <%
-                    }                
                 %>
             </div>
         </div>

@@ -1,65 +1,106 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package bookdeals;
 
-
-
-import java.io.*;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.servlet.*;
-import javax.servlet.http.*;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-@WebServlet(name = "LoginServlet", urlPatterns = {"/login"})
-public class LoginServlet extends HttpServlet {
+/**
+ *
+ * @author ducky
+ */
+@WebServlet(name = "WishListUpdate", urlPatterns = {"/wishlistupdate"})
+public class WishListUpdate extends HttpServlet {
 
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException {
-
         response.setContentType("text/html;charset=UTF-8");
 
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-
         Connection conn = null;
-        ResultSet rs = null;
+
+        HttpSession session = request.getSession(true);
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
+
             conn = DriverManager.getConnection("jdbc:mysql://grove.cs.jmu.edu/team21_db", "team21", "f0xtrot9");
 
-            String sql = "SELECT * FROM Users WHERE username = ? AND password = ?;";
-            PreparedStatement ps = conn.prepareStatement(sql);
+            String username = session.getAttribute("userName").toString();
 
-            ps.setString(1, username);
-            ps.setString(2, password);
+            int rowID;
+            ResultSet rs = null;
 
-            rs = ps.executeQuery();
+            do {
+                rowID = 0 + (int) (Math.random() * 2147483647);
+                String sql = "SELECT row_id FROM Wishlist WHERE row_id = ?";
 
-            if (rs.next()) {
-                HttpSession session = request.getSession(true);
-                session.setAttribute("loggedIn", true);
-                session.setAttribute("userName", username);
-                
-                request.setAttribute("loginrequest", true);
-                RequestDispatcher rd = request.getRequestDispatcher("wishlist");
-                rd.forward(request, response);
-            } else {
-                request.setAttribute("errorMessage", "Invalid username and/or password.");
-                RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
-                rd.forward(request, response);
-            }
+                PreparedStatement ps = conn.prepareStatement(sql);
+                ps.setInt(1, rowID);
 
+                rs = ps.executeQuery();
+
+            } while (rs.next());
+            
+            rs.close();
+            
+            String sql2 = "SELECT wish_list_id FROM Users WHERE username = ?";
+
+            PreparedStatement ps2 = conn.prepareStatement(sql2);
+            ps2.setString(1, username);
+
+            ResultSet rs2 = ps2.executeQuery();
+
+            rs2.next();
+            
+            int wishListID = rs2.getInt("wish_list_id");
+            
+            rs2.close();
+            
+            String sql3 = "INSERT INTO Wishlist VALUES (?, ?, ?)";
+            
+            PreparedStatement ps3 = conn.prepareStatement(sql3);
+            ps3.setInt(1, rowID);
+            ps3.setInt(2, wishListID);
+            ps3.setString(3, request.getParameter("wishlistupdate"));
+            
+            ps3.execute();
+            
+            RequestDispatcher dispatcher = request.getRequestDispatcher("wishlist");
+            dispatcher.forward(request, response);
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println("Cause is " + e.toString());
         } finally {
-            rs.close();
             conn.close();
         }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

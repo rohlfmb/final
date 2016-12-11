@@ -1,8 +1,12 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package bookdeals;
 
-
-
-import java.io.*;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -10,56 +14,78 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.servlet.*;
-import javax.servlet.http.*;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-@WebServlet(name = "LoginServlet", urlPatterns = {"/login"})
-public class LoginServlet extends HttpServlet {
+/**
+ *
+ * @author ducky
+ */
+@WebServlet(name = "WishListRemove", urlPatterns = {"/wishlistremove"})
+public class WishListRemove extends HttpServlet {
 
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException {
-
         response.setContentType("text/html;charset=UTF-8");
 
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-
         Connection conn = null;
-        ResultSet rs = null;
+
+        HttpSession session = request.getSession(true);
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
+
             conn = DriverManager.getConnection("jdbc:mysql://grove.cs.jmu.edu/team21_db", "team21", "f0xtrot9");
 
-            String sql = "SELECT * FROM Users WHERE username = ? AND password = ?;";
-            PreparedStatement ps = conn.prepareStatement(sql);
+            String username = session.getAttribute("userName").toString();
 
+            ResultSet rs = null;
+
+
+            
+            String sql1 = "SELECT wish_list_id FROM Users WHERE username = ?";
+
+            PreparedStatement ps = conn.prepareStatement(sql1);
             ps.setString(1, username);
-            ps.setString(2, password);
 
             rs = ps.executeQuery();
 
-            if (rs.next()) {
-                HttpSession session = request.getSession(true);
-                session.setAttribute("loggedIn", true);
-                session.setAttribute("userName", username);
-                
-                request.setAttribute("loginrequest", true);
-                RequestDispatcher rd = request.getRequestDispatcher("wishlist");
-                rd.forward(request, response);
-            } else {
-                request.setAttribute("errorMessage", "Invalid username and/or password.");
-                RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
-                rd.forward(request, response);
-            }
-
+            rs.next();
+            
+            int wishListID = rs.getInt("wish_list_id");
+            
+            rs.close();
+            
+            String sql2 = "DELETE FROM Wishlist WHERE wish_list_id = ? AND isbn = ?";
+            
+            PreparedStatement ps2 = conn.prepareStatement(sql2);
+            ps2.setInt(1, wishListID);
+            ps2.setString(2, request.getParameter("wishlistremove"));
+            
+            ps2.execute();
+            
+            RequestDispatcher dispatcher = request.getRequestDispatcher("wishlist");
+            dispatcher.forward(request, response);
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println("Cause is " + e.toString());
         } finally {
-            rs.close();
             conn.close();
         }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

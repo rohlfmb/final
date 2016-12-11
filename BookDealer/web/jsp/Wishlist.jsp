@@ -57,9 +57,8 @@
 
         <%
             ArrayList<Book> wishList = new ArrayList();
-            wishList = (ArrayList<Book>) request.getAttribute("wishList");
+            wishList = (ArrayList<Book>) session.getAttribute("wishList");
 
-            System.out.println(wishList.size());
             if (wishList.size() > 0) {
         %>        
         <table style="border-collapse: collapse;" align="center">
@@ -98,9 +97,14 @@
                 } else {
                 %> 
 
-            <p style="text-align: center">
-                No results found. Please try searching again.
-            </p>
+            <br>
+            <br>
+            <br>
+            
+            <center>
+            <h2>No Books in your Wishlist.</h2>
+            <p>You can add books to your Wishlist on a product's page.</p>
+            </center>
 
             <%
                 }
