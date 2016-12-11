@@ -70,7 +70,7 @@ ul li a {
     margin-left: 150px;
 }
 
-#reg, #loginForm {
+#reg, #loginForm, #recoverForm {
     background-color: white;
     border: solid 0.5em #222D4C;
     margin-left: auto;
@@ -87,7 +87,12 @@ ul li a {
     width: 21em;
 }
 
-#reg input[type=text], #loginForm input[type=text] {
+#recoverForm {
+    padding: 1em 4em 2em 3em;
+    width: 20em;
+}
+
+#reg input[type=text], #loginForm input[type=text], #recoverForm input[type=text] {
     background-color: #F9F9F9;
     border: 1px solid black;
     color: #242228;
@@ -105,7 +110,7 @@ input[type=password], input[type=email] {
     width: 215px;
 }
 
-#reg label, #loginForm label {
+#reg label, #loginForm label, #recoverForm label {
     display: inline-block;
     text-align: left;
     width: 14em;
@@ -140,6 +145,10 @@ input[type=submit]:hover, input[type=button]:hover {
     border:2px solid #222D4C;
     background-color: #69B578;
     color: #F9F9F9;
+}
+
+input[type=radio] {
+    float: left;
 }
 
 #search select {

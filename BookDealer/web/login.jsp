@@ -46,23 +46,31 @@ and open the template in the editor.
             <form id="loginForm" action="login" method="post">
                 <p>
                     <label>Username:
-                        <input type="text" size="30" name="username">
+                        <input type="text" size="30" name="username" required>
                     </label>                    
                 </p>
                 
                 <p>
                     <label>Password:
-                        <input type="password" name="password">
+                        <input type="password" name="password" required>
                     </label>
                 </p>
+                
                 <input type="submit" value="Login">
+                <!--<input type="submit" value="Recover Password" style="margin-top: 15px;" onclick="./jsp/Recover.jsp">-->
             </form>
+        </center>
+    
+        <center>
+            <form action="./jsp/Recover.jsp">
+                <input type="submit" value="Recover Password" style="margin-top: 15px;" onclick="./jsp/Recover.jsp">
+            </form>            
         </center>
     
         <%
             if (request.getAttribute("errorMessage") != null)
             {
-                out.println("<p>" + request.getAttribute("errorMessage") + "</p>");
+                out.println("<br/><center><p>" + request.getAttribute("errorMessage") + "</p></center>");
             }
         %>
         <footer>
