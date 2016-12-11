@@ -30,12 +30,11 @@
             </li>
             <%
                 if ((Boolean) session.getAttribute("loggedIn") == null || (Boolean) session.getAttribute("loggedIn") == false) {
-                    session.setAttribute("previousURL", "about.jsp");
-                    out.println("<li style=\"float:right; padding-top: 15px; padding-right: 15px\"><a href=\"./login.jsp\">Login</a></li>");
+                    out.println("<li style=\"float:right; padding-top: 15px; padding-right: 15px\"><a href=\"" + request.getContextPath() + "/login.jsp\">Login</a></li>");
                 } else {
-                    out.println("<li style=\"float:right; padding-top: 15px; padding-right: 15px;\"><a href=\"logout\">|&nbsp;&nbsp;&nbsp;&nbsp;Logout</a></li>");
-                    out.println("<li style=\"float:right; padding-top: 15px; padding-right: 15px;\"><a href=\"wishlist\">|&nbsp;&nbsp;&nbsp;Wishlist</a></li>");
-                    out.println("<li style=\"float:right; padding-top: 15px; padding-right: 15px\"><a href=\"./jsp/Account.jsp\">" + session.getAttribute("userName") + "</a></li>");
+                    out.println("<li style=\"float:right; padding-top: 15px; padding-right: 15px;\"><a href=\"" + request.getContextPath() + "/logout\">|&nbsp;&nbsp;&nbsp;&nbsp;Logout</a></li>");
+                    out.println("<li style=\"float:right; padding-top: 15px; padding-right: 15px;\"><a href=\"" + request.getContextPath() + "/wishlist\">|&nbsp;&nbsp;&nbsp;Wishlist</a></li>");
+                    out.println("<li style=\"float:right; padding-top: 15px; padding-right: 15px\"><a href=\"" + request.getContextPath() + "/jsp/Account.jsp\">" + session.getAttribute("userName") + "</a></li>");
                 }
             %>
         </ul>
