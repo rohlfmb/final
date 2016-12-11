@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Registration Success</title>
+        <link rel="stylesheet" type="text/css" href="default.css"/>
+        <style type="text/css">
+            @import url('https://fonts.googleapis.com/css?family=Raleway:300,400,700');
+        </style>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <ul>
+            <li>
+                <a href="home.jsp">
+                    <img src="logo.png" alt="Logo" style="max-width:150px"/>
+                </a>          
+            <li>
+              <form id="search" method="post" action="search">
+                  <input style='width:20em' name="search" type="text" placeholder="Search..." required>
+                  <select name="type" required>
+                      <option selected="selected" disabled>Select an Option</option>
+                      <option value="title">Title</option>
+                      <option value="author">Author</option>
+                      <option value="isbn">ISBN</option>
+                  </select>
+                  <input type="submit" value='Search'>
+              </form>          
+            </li>
+            <li style="float:right; padding-top: 15px; padding-right: 15px"><a href="./login.jsp">Login</a></li>
+        </ul>
+
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        
+        <center>
+            <h2>You have registered your account successfully.</h2>
+            <p>Use the login button on the top menu bar to access your account.</p>
+        </center>
+    </body>
+</html>
