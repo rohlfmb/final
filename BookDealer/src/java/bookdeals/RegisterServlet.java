@@ -74,10 +74,7 @@ public class RegisterServlet extends HttpServlet {
                 rs = ps.executeQuery();
             } while (rs.next());
             
-            password = hashPassword("password");
-            System.out.println(password);
-            
-            String sql = "INSERT INTO Users VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
+            String sql = "INSERT INTO Users VALUES (?, ?, ?, ?, ?, ?, OLD_PASSWORD(?), ?, ?);";
             PreparedStatement ps = conn.prepareStatement(sql);
 
             ps.setString(1, username);
@@ -94,19 +91,6 @@ public class RegisterServlet extends HttpServlet {
 
             rd = request.getRequestDispatcher("./success.html");
             rd.forward(request, response);
-            
-            /*
-            if (rs.next()) {
-                HttpSession session = request.getSession(true);
-                session.setAttribute("loggedIn", true);
-                session.setAttribute("userName", username);
-                response.sendRedirect("home.jsp");
-            } else {
-                request.setAttribute("errorMessage", "Invalid username and/or password.");
-                RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
-                rd.forward(request, response);
-            }*/
-
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println("Cause is " + e.toString());
         } finally {
@@ -114,21 +98,6 @@ public class RegisterServlet extends HttpServlet {
             conn.close();
         }
     }
-    
-    private static String hashPassword(String password) {
-       String digest;
-       try {
-           MessageDigest md = MessageDigest.getInstance("md5");
-           md.reset();
-           byte[] bytes = md.digest(password.getBytes());
-           digest = new BigInteger(1, bytes).toString(16);
-       }
-       catch (NoSuchAlgorithmException nsae) {
-           nsae.printStackTrace();
-           digest = null;
-       }
-       return digest;
-  }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

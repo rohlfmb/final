@@ -3,6 +3,9 @@ package bookdeals;
 
 
 import java.io.*;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -24,6 +27,9 @@ public class LoginServlet extends HttpServlet {
 
         String username = request.getParameter("username");
         String password = request.getParameter("password");
+        
+        System.out.println(username);
+        System.out.println(password);
 
         Connection conn = null;
         ResultSet rs = null;
@@ -32,7 +38,7 @@ public class LoginServlet extends HttpServlet {
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection("jdbc:mysql://grove.cs.jmu.edu/team21_db", "team21", "f0xtrot9");
 
-            String sql = "SELECT * FROM Users WHERE username = ? AND password = ?;";
+            String sql = "SELECT * FROM Users WHERE username = ? AND password = OLD_PASSWORD(?);";
             PreparedStatement ps = conn.prepareStatement(sql);
 
             ps.setString(1, username);
