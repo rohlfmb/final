@@ -50,6 +50,7 @@ public class LoginServlet extends HttpServlet {
                 HttpSession session = request.getSession(true);
                 session.setAttribute("loggedIn", true);
                 session.setAttribute("userName", username);
+                session.setAttribute("admin", rs.getBoolean("admin"));
                 
                 request.setAttribute("loginrequest", true);
                 RequestDispatcher rd = request.getRequestDispatcher("wishlist");

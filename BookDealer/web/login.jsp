@@ -42,7 +42,7 @@ and open the template in the editor.
         <br/>
         <br/>
         
-        <center>
+        <center><h2>Login</h2>
             <form id="loginForm" action="login" method="post">
                 <p>
                     <label>Username:
@@ -73,7 +73,7 @@ and open the template in the editor.
         <%
             if (request.getAttribute("errorMessage") != null)
             {
-                out.println("<br/><center><p>" + request.getAttribute("errorMessage") + "</p></center>");
+                out.println("<br/><center><p style=\"color:red; padding-left:0px;\">" + request.getAttribute("errorMessage") + "</p></center>");
             }
             
             if ((Boolean) session.getAttribute("loggedIn") == null || (Boolean) session.getAttribute("loggedIn") == false) {

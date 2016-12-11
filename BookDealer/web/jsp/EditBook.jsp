@@ -17,7 +17,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Product Information</title>
+        <title>Edit Product Information</title>
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/default.css"/>
 
         <style>
@@ -43,12 +43,16 @@
                 </form>          
             </li>
             <%
-                if ((Boolean) session.getAttribute("loggedIn") == null || (Boolean) session.getAttribute("loggedIn") == false) {
-                    out.println("<li style=\"float:right; padding-top: 15px; padding-right: 15px\"><a href=\"" + request.getContextPath() + "/login.jsp\">Login</a></li>");
-                } else {
-                    out.println("<li style=\"float:right; padding-top: 15px; padding-right: 15px;\"><a href=\"" + request.getContextPath() + "/logout\">|&nbsp;&nbsp;&nbsp;&nbsp;Logout</a></li>");
-                    out.println("<li style=\"float:right; padding-top: 15px; padding-right: 15px;\"><a href=\"" + request.getContextPath() + "/wishlist\">|&nbsp;&nbsp;&nbsp;Wishlist</a></li>");
-                    out.println("<li style=\"float:right; padding-top: 15px; padding-right: 15px\"><a href=\"" + request.getContextPath() + "/jsp/Account.jsp\">" + session.getAttribute("userName") + "</a></li>");
+                if ((Boolean)session.getAttribute("admin") == null || !(Boolean)session.getAttribute("admin")) {
+                    response.sendRedirect("../home.jsp");
+                }  
+                else if ((Boolean) session.getAttribute("loggedIn") == null || (Boolean) session.getAttribute("loggedIn") == false) {
+                    out.println("<li style=\"float:right; padding-top: 15px; padding-right: 15px\"><a href=\"../login.jsp\">Login</a></li>");
+                }                
+                else {
+                    out.println("<li style=\"float:right; padding-top: 15px; padding-right: 15px;\"><a href=\"../logout\">|&nbsp;&nbsp;&nbsp;&nbsp;Logout</a></li>");
+                    out.println("<li style=\"float:right; padding-top: 15px; padding-right: 15px;\"><a href=\"../wishlist\">|&nbsp;&nbsp;&nbsp;Wishlist</a></li>");
+                    out.println("<li style=\"float:right; padding-top: 15px; padding-right: 15px\"><a href=\"Account.jsp\">" + session.getAttribute("userName") + "</a></li>");
                 }
             %>
         </ul>
@@ -120,36 +124,39 @@
                     }
                 }
             }
+
         %> 
 
         <div class="product">
             <img src="${pageContext.request.contextPath}/img/<%=book.getIsbn()%>.jpg" alt="Book Cover"/>      
             <h2> <%=book.getTitle()%> </h2>
             <hr/>
-            <p> <b>Author:</b> <%=book.getAuthor()%></p>            
-            <p> <b>Genre:</b> <%=book.getGenre()%> </p>
-            <p> <b>Year Published:</b> <%=book.getYear()%> </p>
-            <p> <b>Description:</b> <%=book.getDescription()%> </p>
-            <p> <b>ISBN:</b> <%=book.getIsbn()%> </p>
-
-            <%
-                ArrayList<Book> wishList = new ArrayList();
-                wishList = (ArrayList<Book>) session.getAttribute("wishList");
-
-                if (((Boolean) session.getAttribute("loggedIn") == null || (Boolean) session.getAttribute("loggedIn") == false) || wishList == null || Book.containsBook(wishList, book.getIsbn())) {
-                } else {
-                    out.println("<form action=\"../wishlistupdate\" method=\"post\"><button name=\"wishlistupdate\" value=\"" + book.getIsbn() + "\">Add to Wishlist</button></form>");
-                }
-
-                if (((Boolean) session.getAttribute("loggedIn") == null || (Boolean) session.getAttribute("loggedIn") == false)) {
-                } else if (wishList == null || Book.containsBook(wishList, book.getIsbn())) {
-                    out.println("<form action=\"../wishlistremove\" method=\"post\"><button name=\"wishlistremove\" value=\"" + book.getIsbn() + "\">Remove from Wishlist</button></form>");
-                }
-                
-                if ((Boolean)session.getAttribute("admin") != null || (Boolean)session.getAttribute("admin")) {
-                    out.println("<form action=\"" + request.getContextPath() + "/jsp/EditBook.jsp?isbn=" + book.getIsbn() + "\" method=\"post\"><button name=\"editbook\" value=\"" + book.getIsbn() + "\">Edit Book</button></form>");
-                } 
-            %>
+            <form action="../updatebook" id="uBook">
+                <p>
+                    <label><b>Author:</b><br/>
+                        <input type="text" name="author" id="author" value="<%=book.getAuthor()%>">
+                    </label>
+                </p>
+                <p>
+                    <label>Genre:<br/>
+                        <input type="text" name="genre" id="genre" value="<%=book.getGenre()%>">
+                    </label>
+                </p>
+                <p>
+                    <label>Year Published:<br/>
+                        <input type="text" name="year" id="year" value="<%=book.getYear()%>" size="3">
+                    </label>
+                </p>
+                <p><b>Description:</b></p>
+                    <textarea id="description" name="description" style="resize: none;" cols="65" rows="2"></textarea>
+                    <script>
+                        document.getElementById("description").innerHTML="<%=book.getDescription()%>";
+                    </script>  
+                <input type="hidden" name="isbn" id="isbn" value="<%=book.getIsbn()%>">
+                <p> <b>ISBN:</b> <%=book.getIsbn()%> </p>
+                <input type="submit" name="send" value="Edit Book Information" id="submit" />
+            </form>
+            
 
         </div>
 
@@ -157,63 +164,63 @@
              display: block; margin-left: auto; margin-right: auto;">
             <div class="col span_1_of_4">
                 <h2>Amazon</h2>
-                <hr>
+
                 <%                    if (amPrice
                             == -1) {
                 %> <p> Price Not Available </p> <%
                 } else if (amPrice == lowest) {
-                %> <h2 style="font-weight: bold; color: #69B578"> $<%=df.format(amPrice)%> </h2> <%
+                %> <p style="font-weight: bold; color: #69B578"> $<%=df.format(amPrice)%> </p> <%
                 } else {
-                %> <h2> $<%=df.format(amPrice)%> </h2> <%
+                %> <p> $<%=df.format(amPrice)%> </p> <%
                     }
                 %>
             </div>
             <div class="col span_1_of_4">
                 <h2>Barnes & Noble</h2>
-                <hr>
+
                 <%
                     if (bnPrice
                             == -1) {
                 %> <p> Price Not Available </p> <%
                 } else if (bnPrice == lowest) {
-                %> <h2 style="font-weight: bold; color: #69B578"> $<%=df.format(bnPrice)%> </h2> <%
+                %> <p style="font-weight: bold; color: #69B578"> $<%=df.format(bnPrice)%> </p> <%
                 } else {
-                %> <h2> $<%=df.format(bnPrice)%> </h2> <%
+                %> <p> $<%=df.format(bnPrice)%> </p> <%
                     }
                 %>
             </div>
             <div class="col span_1_of_4">
                 <h2>Books-A-Million</h2>
-                <hr>
+
                 <%
                     if (bmPrice
                             == -1) {
                 %> <p> Price Not Available </p> <%
                 } else if (bmPrice == lowest) {
-                %> <h2 style="font-weight: bold; color: #69B578"> $<%=df.format(bmPrice)%> </h2> <%
+                %> <p style="font-weight: bold; color: #69B578"> $<%=df.format(bmPrice)%> </p> <%
                 } else {
-                %> <h2> $<%=df.format(bmPrice)%> </h2> <%
+                %> <p> $<%=df.format(bmPrice)%> </p> <%
                     }
                 %>
             </div>
             <div class="col span_1_of_4">
                 <h2>WalMart</h2>
-                <hr>
+
                 <%
                     if (wmPrice
                             == -1) {
                 %> <p> Price Not Available </p> <%
                 } else if (wmPrice == lowest) {
-                %> <h2 style="font-weight: bold; color: #69B578"> $<%=df.format(wmPrice)%> </h2> <%
+                %> <p style="font-weight: bold; color: #69B578"> $<%=df.format(wmPrice)%> </p> <%
                 } else {
-                %> <h2> $<%=df.format(wmPrice)%> </h2> <%
+                %> <p> $<%=df.format(wmPrice)%> </p> <%
                     }
                 %>
             </div>
         </div>
 
         <footer>
-            <a href="${pageContext.request.contextPath}/about.jsp">About Us</a>
+            <a href="../about.jsp">About Us</a>
         </footer>
     </body>
 </html>
