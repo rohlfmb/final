@@ -23,6 +23,14 @@
         <style>
             @import url('https://fonts.googleapis.com/css?family=Raleway:300,400,700');
         </style>
+        
+        <script>
+            function confirmDelete() {
+                if(window.confirm("Are you sure you want to delete this book from the database?" + getParameterByName(""))) {
+                    window.open("../home.jsp", "_self")
+                }        
+            }
+        </script>
     </head>
     <body>
         <ul>
@@ -146,8 +154,9 @@
                     out.println("<form action=\"../wishlistremove\" method=\"post\"><button name=\"wishlistremove\" value=\"" + book.getIsbn() + "\">Remove from Wishlist</button></form>");
                 }
                 
-                if ((Boolean)session.getAttribute("admin") != null || (Boolean)session.getAttribute("admin")) {
-                    out.println("<form action=\"" + request.getContextPath() + "/jsp/EditBook.jsp?isbn=" + book.getIsbn() + "\" method=\"post\"><button name=\"editbook\" value=\"" + book.getIsbn() + "\">Edit Book</button></form>");
+                if ((Boolean)session.getAttribute("admin") != null && (Boolean)session.getAttribute("admin")) {
+                    out.println("<br/><form action=\"" + request.getContextPath() + "/jsp/EditBook.jsp?isbn=" + book.getIsbn() + "\" method=\"post\"><button name=\"editbook\" value=\"" + book.getIsbn() + "\">Edit Book</button></form><br/>");
+                    out.println("<form action=\"" + request.getContextPath() + "/jsp/DeleteBook.jsp?isbn=" + book.getIsbn() + "\" method=\"post\"><button name=\"editbook\">Remove Book</button></form>");
                 } 
             %>
 
