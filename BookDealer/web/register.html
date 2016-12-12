@@ -42,6 +42,23 @@
                 request.onreadystatechange = updateUser;
                 request.send(null);
             }
+            
+            function updateUser() {
+                if (request.readyState == 4) {
+                  if (request.status == 200) {
+                    var response = request.responseText;
+                    //... handle HTTP response ...
+                    get("userid").style.color = "green";
+                    
+                    if (response == "red") {
+                       get("userid").style.color = "red";
+                    }
+                  }
+                  else {
+                    alert('Ajax transaction failed, status: ' + request.status);
+                  }
+                }
+              }
 
             // validate form data
             function validateForm() {
