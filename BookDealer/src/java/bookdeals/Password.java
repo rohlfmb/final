@@ -46,7 +46,7 @@ public class Password extends HttpServlet {
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection("jdbc:mysql://grove.cs.jmu.edu/team21_db", "team21", "f0xtrot9");
 
-            String sql = "UPDATE Users SET password=? WHERE username=\""+username+"\";";
+            String sql = "UPDATE Users SET password=OLD_PASSWORD(?) WHERE username=\""+username+"\";";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, password);
             
