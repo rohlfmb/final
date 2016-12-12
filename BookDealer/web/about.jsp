@@ -52,32 +52,36 @@
         <hr>
 
         <div class="section group" align="center">
-            <div class="col span_1_of_4">
+            <div class="col span_1_of_4">              
                 <h2>Rebecca Andrews</h2>
 
                 <p>
-                    Senior Computer Science major at JMU, pursuing a career in software engineering
+                    Rebecca is a Senior Computer Science major at JMU and is pursuing a career in software development.
+                    She has most recently worked at NASA where she maintained their WordPress sites.
                 </p>
             </div>
             <div class="col span_1_of_4">
                 <h2>Paige Campbell</h2>
 
                 <p>
-                    Senior Computer Science major at JMU, pursuing career in information security
+                    Paige is a Senior Computer Science major at JMU. She likes working on the backend of projects
+                    with databases. She has worked with Northrop Grumman in the past and helped maintain their databases.
                 </p>
             </div>
             <div class="col span_1_of_4">
                 <h2>Brendon Guss</h2>
 
                 <p>
-                    Senior Computer Science major at JMU, pursuing a career in software engineering
+                    Brendon is a Senior Computer Science major at JMU. He also enjoys working on the backend of projects.
+                    He currently works at the JMU IT Help Desk.
                 </p>
             </div>
             <div class="col span_1_of_4">
-                <h2>Matthew Rohlf</h2>
+                <h2>Matt Rohlf</h2>
 
-                <p>
-                    Senior Computer Science major at JMU, pursuing a career in software engineering
+                <p style="padding-right: 15px;">
+                    Matt is a Senior Computer Science major at JMU. He likes working mainly on the front-end of projects
+                    and helps connect them to the backend. He is currently an intern at Axon, AI in Harrisonburg.
                 </p>
             </div>
         </div>
